@@ -1,33 +1,42 @@
-# NOTICE
-This repository should not contain more than 100MB.
-This README contains only a template at the moment.
-
-# Title
-- One short paragraph as repository description
-- Should contain the basic functionalities
+# Patient Monitoring System with Computer Vision
+This repository is dedicated to the development of a patient monitoring system for hospitals, utilizing computer vision to detect potentially dangerous situations such as falls, unusual movements, or the risk of pressure sores. The system is designed to immediately trigger alarms based on the detected event, aiding nursing staff to respond quickly and accurately.
 
 ## Getting started
-- How to get the code of the repository up and running
+To get this project up and running on your local machine for development and testing purposes, please follow these steps:
+1. Clone the repository to your local machine using `git clone <repository-url>`.
+2. Ensure that all external dependencies listed below are properly installed.
+3. Follow the build dependencies instructions to set up the development environment.
 
 ## External dependencies
-- List external frameworks and projects
-- Add link to source code
+This project relies on several external frameworks and libraries, including:
+- OpenCV for computer vision tasks. [OpenCV GitHub](https://github.com/opencv/opencv)
+- TensorFlow for implementing machine learning models. [TensorFlow GitHub](https://github.com/tensorflow/tensorflow)
 
 ## Build dependencies
-- Link to Dockerfile is sufficient
-- If there is no Dockerfile, list the dependencies here
+Refer to the Dockerfile in this repository for a comprehensive list of all build dependencies.
+- [Link to Dockerfile](#)
+
+If no Dockerfile is available, required dependencies will include:
+- Python 3.8 or newer
+- OpenCV 4.5 or newer
+- TensorFlow 2.4 or newer
 
 ## Run dependencies
-- What other stuff needs to run on the system
-- E.g. in the object recognition repository list the kinect2 node
+In addition to the build dependencies, running this system requires:
+- A camera compatible with OpenCV for real-time video capture.
+- Adequate hardware to support TensorFlow model inference.
 
 ## Authors
-- List all participants
-- Add to each participant what they are responsible for
-- E.g.: Max Musterman - _Initial work_ - [Link to gitlab user (@...)]
+| Name | Email |
+| ------ | ------ |
+| Emircan Tutar    |  emircan.tutar@hs-weingarten.de   |
+| Niklas Kleiser   | niklas.kleiser@hs-weingarten.de   |
+| David Metzler    | david.metzler@hs-weingarten.de    |
+
 
 ## License
-What license is applied to this repository in case of open sourcing.
+This project is licensed under the MIT License.
 
 ## Problems and solutions
+For a detailed list of common problems encountered during the development of this project and their solutions, please refer to the following link:
 [Problems and solutions](https://fbe-gitlab.hs-weingarten.de/prj-iki-robotics/orga/robolab-wiki/wikis/Problems-And-Solutions)
