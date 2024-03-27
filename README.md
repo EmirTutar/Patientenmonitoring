@@ -2,6 +2,11 @@
 This repository is dedicated to the development of a patient monitoring system for hospitals, utilizing computer vision to detect potentially dangerous situations such as falls, unusual movements, or the risk of pressure sores.
 
 
+<center>
+
+![Image Description](/doc/documentation/images/overview.png)
+</center>
+
 The primary objective of this project is to implement  soem key functionalities outlined by P. Kittipanya-Ngam, O. S. Guat, and E. H. Lung in their paper titled "Computer vision applications for patients monitoring system," presented at the 2012 15th International Conference on Information Fusion in Singapore (pp. 2201-2208). One such critical feature involves triggering an event if a bed remains unoccupied for an extended period. This detection mechanism, as suggested in the paper, can be efficiently implemented using  simple image processing techniques  implemented in OpenCV like Canny Edge Detection or Hough Line Transformation. 
 
 ## Getting started
