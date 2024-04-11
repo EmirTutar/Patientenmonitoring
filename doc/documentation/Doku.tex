@@ -7,6 +7,8 @@
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{biblatex}
+\usepackage[german]{babel}
+
 
 \addbibresource{sample.bib}
 
@@ -45,7 +47,7 @@
 	%----------------------------------------------------------------------------------------
 	
 	\HRule \\[0.4cm]
-	{ \huge \bfseries Project Title}\\[0.4cm] % Title of your document
+	{ \huge \bfseries Patient Monitoring System}\\[0.4cm] % Title of your document
 	\HRule \\[1.5cm]
 	
 	%----------------------------------------------------------------------------------------
@@ -55,15 +57,19 @@
 	\begin{minipage}{0.4\textwidth}
 		\begin{flushleft} \large
 			\emph{Author:}\\
-			Firstname \textsc{Lastname}\\ % Your name
-			Mat.No.
+			Niklas \textsc{Kleiser}\\ % Your name
+			Mat.No. 35579 \\
+            Emircan \textsc{Tutar}\\ % Your name
+			Mat.No. 35606 \\
+            David \textsc{Metzler}\\ % Your name
+			Mat.No. 35582
 		\end{flushleft}
 	\end{minipage}
 	~
 	\begin{minipage}{0.4\textwidth}
 		\begin{flushright} \large
 			\emph{Supervisor:} \\
-			Title Firstname \textsc{Lastname} % Supervisor's Name
+			MSc. Benjamin \textsc{Stähle} % Supervisor's Name
 		\end{flushright}
 	\end{minipage}\\[2cm]
 	
@@ -75,7 +81,7 @@
 	%	DATE SECTION
 	%----------------------------------------------------------------------------------------
 	
-	{\large \today}\\[5cm] % Date, change the \today to a set date if you want to be precise
+	{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
 	
 	%----------------------------------------------------------------------------------------
 	%	LOGO SECTION
@@ -94,19 +100,15 @@
 \tableofcontents
 \pagebreak
 
+\input{chapter/introduction}
+\input{chapter/abbreviations}
+\input{chapter/specification}
 
-
-\section{Introduction}
-
-
-\section{Implementation}
-
-
-\section{Results}
-
+We can \cite{texbook} properly.
 
 \printbibliography[heading=bibintoc]
 
 
 \end{document}
+
 
