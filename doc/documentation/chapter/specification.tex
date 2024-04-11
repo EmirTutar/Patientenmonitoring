@@ -7,18 +7,103 @@
 
 \subsection{Muss - Anforderungen}
 \begin{itemize}
-  \item  Fall Detection
-  \item  Matrix / Matrix-Client
   \item  MQTT / MQTT-Client
   \item  SMTP-Client + SMTP-Server (Mailcow)
   \item  Fail2ban
   \item ddclient
   \item Alarm Ton
   \item Ubuntu 22.04 (LTS, Sec)
-  \item  3 Raspberry
-  \item  Raspberry Pi Camera
   \item Docker / Docker Compose
 \end{itemize}
+
+\subsubsection{Raspberry und Raspberry Pi} \label{sec:raspi}
+Für das Projekt soll der der Raspberry Pi gewählt werden, da dieser eine einfache Anbindung mit einer Kamera erlaubt. Der Rasperry Pi erlaubt es Microcontroller und Kamera in einem kompakten Gehäuse unterzubringen.  Es soll zwei Raspberry Pis geben, die eine Detektion  durchführen (siehe Abb. \ref{fig:patient_monitoring}). Ein Raspberry Pi mi Rasperry Pi Kamera übernimmt die Bed Detektion und ein Raspberry Pi mit Kamera übernimmt die Fall Detektion. Ein dritter Raspberry Pi soll  dafür verwendet werden,  einen Alarm zu schalten. 
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		
+	
+		\draw [-, dashed, gray] (4,1)-- (-4,1)--(-4,3.5) --(4,3.5) --(4,1);
+		
+			\node at (-2.8 ,3) {BED VIEW};
+					
+		\node[inner sep=0pt] (whitehead) at (2,2.5)
+		{\includegraphics[width=.05\textwidth]{images/camera.png}};
+		
+		\node[above] at (2.2,2.6) {\scriptsize Raspberry Pi und Kamera};
+		
+		\node[inner sep=0pt] (whitehead) at (0,2)
+		{\includegraphics[width=.1\textwidth]{images/person_in_bed.png}};
+
+			\node at (-2.6 ,-1) {ROOM VIEW};
+	
+			\draw [-, dashed, gray] (4,-0.5)-- (-4,-0.5)--(-4,-4) --(4, -4 ) --(4,-0.5);
+		
+		\node[inner sep=0pt] (whitehead) at (2,-1.5)
+		{\includegraphics[width=.05\textwidth]{images/camera.png}};
+		
+
+		
+		\node[inner sep=0pt] (whitehead) at (-0.25,-1.25)
+		{\includegraphics[width=.1\textwidth]{images/person_in_bed.png}};
+		
+		
+		\node[inner sep=0pt] (whitehead) at (0,-2.25)
+		{\includegraphics[width=.1\textwidth]{images/person_in_bed.png}};
+		
+	\node[inner sep=0pt] (whitehead) at (-0.5,-3.25)
+		{\includegraphics[width=.1\textwidth]{images/person_in_bed.png}};
+		
+
+	  \node[inner sep=0pt] (whitehead) at (4.0,0.25)
+		{\includegraphics[width=.08\textwidth]{images/server.png}};
+		
+				\node[below] at (2.2,-1.6) {\scriptsize Raspberry Pi und Kamera};
+		
+		\node[below] at (4.0,-0.1) {\scriptsize MQTT Broker};
+		
+			
+		
+		\draw [-] (2,2.5)-- ( 3,2.5) -- (3,0.25) ;
+		\draw [-] (2,-1.5)-- ( 3,-1.5) -- (3,0.25) ;
+		\draw [-]  (3,0.25)  -- (3.8,0.25);
+
+	    \draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,-1.5) -- (5.5,-1.5);
+	     \draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,2.5) -- (5.5,2.5);
+	
+		\node at  (7.0,2.5) {Bed Detection};
+		
+		
+		\node at  (7.0,-1.5) {Fall Detection};
+		
+		
+	
+	 	\draw [->]  (8.5 ,-1.5) -- (9.0,-1.5) -- (9,0.25) -- (9.5,0.25)  ;
+	
+		\draw [->]  (8.5, 2.5) -- (9.0,2.5) -- (9,0.25) -- (9.5,0.25) ;
+		
+		\node[inner sep=0pt] (whitehead) at (9.85,0.25)
+		{\includegraphics[width=.05\textwidth]{images/raspi.png}};
+		
+		\node[below] at (10.,0.1) {\scriptsize Raspberry Pi };
+		
+		\draw [->]  (10.3,0.25) -- (10.6,0.25) ;
+		
+		\node[red] at  (11.2,0.25) {Alarm};
+		
+		
+	\end{tikzpicture}
+	\caption{Darstellung des Systemaufbaus}
+	\label{fig:patient_monitoring}
+\end{figure}
+
+
+\subsection{Fall Detektion }
+In Abschnitt  \ref{sec:raspi} wurde bereits angerissen, dass ein Raspberry Pi mithilfe der Raspberry Pi Kamera eine Fall Detektion durchführen soll. Der Raspberry Pi soll also überprüfen, ob ein Patient hingefallen ist. Dies soll mithilfe des Yolo-Frameworks gemacht werden. Es ist hierbei Ziel das Modell auf dem Raspberry Pi zum laufen zu bekommen, um möglichst nicht noch einen zusätzlichen Server zu benötigen. 
+
+\subsection{Matrix}
+Es soll einen Matrixserver geben. Über diesen Server sollen Pfleger auch auf dem Handy benachrichtigt werden, wenn eine Alarmsituation eingetreten ist. 
 
 
 \subsection{Soll - Anforderungen}
@@ -36,3 +121,6 @@
   \item Wisper für Ton
   \item Logging / MQTT Frontend
 \end{itemize}
+
+\subsubsection{Kameraview}
+Falls noch Zeit ist, soll zusätzlich mithilfe des QT-Frameworks eine Kameraview entwickelt werden. Mit dieser Anwendung sollen  Pfleger die Patienten überwachen können. Sie können so Dinge entdecken, die durch unsere Detektoren nicht abgedeckt werden. Ein Pfleger könnte so die Extubation eines Patienten erkennen. 
