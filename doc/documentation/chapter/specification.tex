@@ -1,3 +1,5 @@
+\selectlanguage{german}
+
 \section{Lastenheft}
 \begin{itemize}
     \item Sicherheitsaspekt
@@ -7,8 +9,6 @@
 
 \subsection{Muss - Anforderungen}
 \begin{itemize}
-  \item  MQTT / MQTT-Client
-  \item  SMTP-Client + SMTP-Server (Mailcow)
   \item  Fail2ban
   \item ddclient
   \item Alarm Ton
@@ -16,8 +16,14 @@
   \item Docker / Docker Compose
 \end{itemize}
 
+\subsection{MQTT / MQTT-Client}
+Unser System wird aus mehreren verschiedenen Komponenten bestehen, die miteinander kommunizieren müssen. Diese Kommunikation muss über einen Message - Broker und das Protokoll ''MQTT'' \cite{MQTT} erfolgen. Um das Protokoll nutzen zu können benötigt es einen MQTT - Message Broker und Clients die ihre Nachrichten an diesen schicken, dass sie an die Clients verteilt werden, die darum gebeten haben Nachrichten eines Topics zu erhalten. 
+
+\subsection{SMTP-Server / SMTP-Client}
+Zu Zwecken der Protokollierung und Dokumentation muss das System zusätzlich zu einem Alarm eine Mail an einen eigenen Mailserver gesendet werden. Dieser Mailserver soll über das SMTP - Protokoll Mails empfangen können. Es muss somit ein Mailcow - Server \cite{Mailcow} eingerichtet werden. Dafür müssen auch DNS - Records angepasst werden. 
+
 \subsubsection{Raspberry und Raspberry Pi} \label{sec:raspi}
-Für das Projekt soll der der Raspberry Pi gewählt werden, da dieser eine einfache Anbindung mit einer Kamera erlaubt. Der Rasperry Pi erlaubt es Microcontroller und Kamera in einem kompakten Gehäuse unterzubringen.  Es soll zwei Raspberry Pis geben, die eine Detektion  durchführen (siehe Abb. \ref{fig:patient_monitoring}). Ein Raspberry Pi mi Rasperry Pi Kamera übernimmt die Bed Detektion und ein Raspberry Pi mit Kamera übernimmt die Fall Detektion. Ein dritter Raspberry Pi soll  dafür verwendet werden,  einen Alarm zu schalten. 
+Für das Projekt soll der Raspberry Pi gewählt werden, da dieser eine einfache Anbindung mit einer Kamera erlaubt. Der Raspberry Pi erlaubt es Microcontroller und Kamera in einem kompakten Gehäuse unterzubringen.  Es soll zwei Raspberry Pis geben, die eine Detektion  durchführen (siehe Abb. \ref{fig:patient_monitoring}). Ein Raspberry Pi mit Raspberry Pi Kamera übernimmt die Bed Detektion und ein Raspberry Pi mit Kamera übernimmt die Fall Detektion. Ein dritter Raspberry Pi soll  dafür verwendet werden,  einen Alarm zu schalten. 
 
 \begin{figure}[H]
 	\centering
@@ -99,28 +105,33 @@ Für das Projekt soll der der Raspberry Pi gewählt werden, da dieser eine einfa
 \end{figure}
 
 
-\subsection{Fall Detektion }
-In Abschnitt  \ref{sec:raspi} wurde bereits angerissen, dass ein Raspberry Pi mithilfe der Raspberry Pi Kamera eine Fall Detektion durchführen soll. Der Raspberry Pi soll also überprüfen, ob ein Patient hingefallen ist. Dies soll mithilfe des Yolo-Frameworks gemacht werden. Es ist hierbei Ziel das Modell auf dem Raspberry Pi zum laufen zu bekommen, um möglichst nicht noch einen zusätzlichen Server zu benötigen. 
+\subsubsection{Fall Detektion}
+In Abschnitt  \ref{sec:raspi} wurde bereits angerissen, dass ein Raspberry Pi mithilfe der Raspberry Pi Kamera eine Fall Detektion durchführen soll. Der Raspberry Pi soll also überprüfen, ob ein Patient hingefallen ist. Dies soll mithilfe des Yolo-Frameworks gemacht werden. Es ist hierbei Ziel das Modell auf dem Raspberry Pi zum Laufen zu bekommen, um möglichst nicht noch einen zusätzlichen Server zu benötigen. 
 
-\subsection{Matrix}
+\subsubsection{Matrix}
 Es soll einen Matrixserver geben. Über diesen Server sollen Pfleger auch auf dem Handy benachrichtigt werden, wenn eine Alarmsituation eingetreten ist. 
 
 
 \subsection{Soll - Anforderungen}
 \begin{itemize}
   \item Self-Hosted
-  \item  Bed Detection
   \item Alarm Licht
   \item Firewall (Router hat ja eh ne Firewall)
 \end{itemize}
 
-\subsection{Kann - Anforderungen}
+\subsubsection{Bett Detektion}
+Es soll eine Komponente in unserem System geben, welche sich darum kümmert, zu erkennen, ob eine Person in einem Bett liegt. Es soll aber nicht jede Abwesenheit sofort zu einem Alarm führen, sondern nur, wenn über einen Zeitraum von 10 Minuten, das Bett leer bleibt, sollte ein Pfleger benachrichtigt werden, der dann nach dem Patienten schaut. Aufgrund der Zeitspanne von 10 Minuten, die das Bett leer bleiben muss, um einen Alarm auszulösen, ist es auch in Ordnung, wenn die Detektion etwas länger dauert. Es soll angestrebt werden, innerhalb von 30 Sekunden nach Verlassen des Betts zu erkennen das dieses leer ist. 
 
+\subsection{Kann - Anforderungen}
 \begin{itemize}
   \item QT-Kamera mit Kameraview
-  \item Wisper für Ton
-  \item Logging / MQTT Frontend
 \end{itemize}
+
+\subsection{MQTT Frontend}
+Es kann ein MQTT - Frontend benutzt werden, um es Entwicklern einfacher zu machen die verschiedenen Nachrichten und Kommunikationskanäle nachzuvollziehen. 
+
+\subsection{Gesprochene Information über Patient in Hilfesituation}
+In den Minimalanforderungen unseres Systems weiß ein Pfleger nur das ein Patient Hilfe benötigt, nicht aber, welcher der Patienten. Um diese Problematik zu lösen, kann das System anstelle des Alarmtons über eine sprechende Stimme dem Pfleger mitteilen, welcher Patient Hilfe benötigt. 
 
 \subsubsection{Kameraview}
 Falls noch Zeit ist, soll zusätzlich mithilfe des QT-Frameworks eine Kameraview entwickelt werden. Mit dieser Anwendung sollen  Pfleger die Patienten überwachen können. Sie können so Dinge entdecken, die durch unsere Detektoren nicht abgedeckt werden. Ein Pfleger könnte so die Extubation eines Patienten erkennen. 
