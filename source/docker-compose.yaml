@@ -1,0 +1,9 @@
+services:
+  yolov5:
+    build:
+      context: ./yolov5
+      dockerfile: Dockerfile
+    devices:
+      - /dev/video0:/dev/video0  # Acces to camera
+    ports:
+      - "1883:1883"
