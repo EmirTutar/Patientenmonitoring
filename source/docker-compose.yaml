@@ -7,3 +7,16 @@ services:
       - /dev/video0:/dev/video0  # Acces to camera
     ports:
       - "1883:1883"
+
+  # mqtt5 eclipse-mosquitto
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - ./mqtt5/config:/mosquitto/config:rw
+      - ./mqtt5/data:/mosquitto/data:rw
+      - ./mqtt5/log:/mosquitto/log:rw
+    restart: unless-stopped
