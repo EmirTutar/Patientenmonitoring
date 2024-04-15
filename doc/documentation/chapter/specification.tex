@@ -8,20 +8,25 @@
 \end{itemize}
 
 \subsection{Muss - Anforderungen}
-\begin{itemize}
-  \item ddclient
-  \item Alarm Ton
-  \item Ubuntu 22.04 (LTS, Sec)
-  \item Docker / Docker Compose
-\end{itemize}
 
-\subsection{Fail2ban}
+\subsubsection{Docker}
+Docker ist ein Tool, das Anwendungen in kompakten, tragbaren Containern organisiert und ausführt. Diese Container sind von der Umgebung isoliert, in der sie laufen, was bedeutet, dass sie konsistent funktionieren, unabhängig davon, wo sie eingesetzt werden. Für dieses "Selfhosted" Projekt auf einem Raspberry Pi bietet Docker die Möglichkeit, verschiedene Dienste und Anwendungen ohne Konflikte nebeneinander auszuführen.
+
+Durch die Nutzung von Docker kann man sicherstellen, dass jede Anwendung und jeder Service seine eigene Umgebung hat, was die Sicherheit verbessert und es einfacher macht, Updates und Änderungen durchzuführen, ohne andere Teile des Systems zu beeinträchtigen. Docker ist besonders wertvoll, wenn man mehrere unterschiedliche Anwendungen auf einem einzigen Raspberry Pi hosten möchte, da es die Verwaltung deutlich vereinfacht.\cite{Docker}
+
+\subsubsection{Ubuntu 22.04 (LTS)}
+Ubuntu 22.04 LTS, ist einer der beliebten Linux-Betriebssystemen. Sie bietet langfristige Unterstützung bis April 2027, was sie zu einer zuverlässigen Wahl für das Patient Monitoring System Projekt macht. Diese Version ist benutzerfreundlich und ideal für eine Vielzahl von Anwendungen, von Lernen und Experimentieren bis hin zu ernsthaften technischen Projekten. \cite{ubuntu}
+
+\subsubsection{Dynamisches DNS-Management (ddclient)}
+Der ddclient ist ein Tool, das speziell für die Aktualisierung dynamischer DNS-Einträge entwickelt wurde. Es ermöglicht es Geräten wie dem Raspberry Pi, die oft keine feste IP-Adresse haben, dennoch unter einem konstanten Domainnamen erreichbar zu sein. Durch die automatische Überwachung und Aktualisierung der sich ändernden öffentlichen IP-Adresse des Raspberry Pi sorgt ddclient dafür, dass der Pi auch nach einem IP-Wechsel durch den Internetdienstanbieter zugänglich bleibt. Diese Funktion ist besonders wertvoll für die Verwendung des Raspberry Pi als Home-Server für Anwendungen wie Webhosting, Dateifreigaben oder Überwachungsdienste. Die Installation und Konfiguration von ddclient ist unkompliziert und erfolgt über die Kommandozeile. \cite{ddclient}
+
+\subsubsection{Fail2ban}
 Fail2Ban ist ein entscheidendes Werkzeug zur Absicherung, die dazu dient, einen Server vor unautorisierten Zugriffsversuchen und Brute-Force-Angriffen zu schützen. Durch die Überwachung von Logdateien erkennt Fail2Ban auffällige Anmeldeversuche und blockiert die zugehörigen IP-Adressen automatisch für eine vordefinierte Zeitdauer. Mit Fail2Ban kann beispielsweise die IP-Adresse eines Geräts, das wiederholt versucht, ohne die korrekten Anmeldedaten eine Verbindung zum Server herzustellen, blockiert werden. Es lässt sich so konfigurieren, dass jede IP-Adresse, die mehr als dreimal pro Tag versucht, sich zu verbinden, gesperrt wird. \cite{Fail2ban} Diese Funktion ist besonders wichtig für die Minimierung von potenziellen Sicherheitsrisiken. Im Rahmen unseres Projekts auf dem Raspberry Pi wird Fail2Ban eine kritische Rolle spielen, indem es dazu beiträgt, die Zugriffskontrolle auf unsere Dienste wie SSH verstärken.
 
-\subsection{MQTT / MQTT-Client}
+\subsubsection{MQTT / MQTT-Client}
 Unser System wird aus mehreren verschiedenen Komponenten bestehen, die miteinander kommunizieren müssen. Diese Kommunikation muss über einen Message - Broker und das Protokoll ''MQTT'' erfolgen \cite{MQTT} . Um das Protokoll nutzen zu können benötigt es einen MQTT - Message Broker und Clients die ihre Nachrichten an diesen schicken, dass sie an die Clients verteilt werden, die darum gebeten haben Nachrichten eines Topics zu erhalten. 
 
-\subsection{SMTP-Server / SMTP-Client}
+\subsubsection{SMTP-Server / SMTP-Client}
 Zu Zwecken der Protokollierung und Dokumentation muss das System zusätzlich zu einem Alarm eine Mail an einen eigenen Mailserver gesendet werden. Dieser Mailserver soll über das SMTP - Protokoll Mails empfangen können. Es muss somit ein Mailcow - Server eingerichtet werden  \cite{Mailcow} . Dafür müssen auch DNS - Records angepasst werden. 
 
 \subsubsection{Raspberry und Raspberry Pi} \label{sec:raspi}
@@ -114,22 +119,29 @@ In Abschnitt  \ref{sec:raspi} wurde bereits angerissen, dass ein Raspberry Pi mi
 Es soll einen Matrixserver geben \cite{Matrix} . Über diesen Server sollen Pfleger auch auf dem Handy benachrichtigt werden, wenn eine Alarmsituation eingetreten ist. 
 
 
+
 \subsection{Soll - Anforderungen}
-\begin{itemize}
-  \item Self-Hosted
-  \item Alarm Licht
-  \item Firewall (Router hat ja eh ne Firewall)
-\end{itemize}
 
 \subsubsection{Bett Detektion}
 Es soll eine Komponente in unserem System geben, welche sich darum kümmert, zu erkennen, ob eine Person in einem Bett liegt. Es soll aber nicht jede Abwesenheit sofort zu einem Alarm führen, sondern nur, wenn über einen Zeitraum von 10 Minuten, das Bett leer bleibt, sollte ein Pfleger benachrichtigt werden, der dann nach dem Patienten schaut. Aufgrund der Zeitspanne von 10 Minuten, die das Bett leer bleiben muss, um einen Alarm auszulösen, ist es auch in Ordnung, wenn die Detektion etwas länger dauert. Es soll angestrebt werden, innerhalb von 30 Sekunden nach Verlassen des Betts zu erkennen das dieses leer ist. 
 
+\subsubsection{Alarm (Ton und Licht)}
+Eine wesentliche Anforderung des Projekts ist die Implementierung eines Alarmtons und eines Lichtsignals. Diese Funktionalität wird durch den Anschluss eines Lautsprechers und einer LED an den Raspberry Pi realisiert. Die Verbindung erfolgt über ein Steckbrett, auf dem auch die erforderlichen Widerstände und Transistoren montiert sind, um die Signale entsprechend zu steuern und zu verstärken.
+
+Die LED dient dabei als visuelles Alarmzeichen, während der Lautsprecher akustische Warnungen ausgibt. Diese Komponenten werden über GPIO-Pins des Raspberry Pi gesteuert, was eine direkte Signalübertragung von der Steuerungssoftware zu den Warnsystemen ermöglicht.
+
+\subsubsection{Firewall}
+Eine Firewall ist als zusätzliche Sicherheitsebene im Projekt vorgesehen, um den Schutz des Raspberry Pi-Systems zu verstärken. Obwohl viele Heimrouter bereits mit integrierten Firewalls ausgestattet sind, ist die Implementierung einer dedizierten Firewall auf dem Raspberry Pi selbst eine wichtige Soll-Anforderung. Diese Maßnahme dient dazu, die Netzwerksicherheit weiter zu erhöhen und Anwendungsspezifische Sicherheitsrichtlinien durchzusetzen.
+
+Die Firewall auf dem Raspberry Pi wird konfiguriert, um eingehende und ausgehende Verbindungen genau zu überwachen und zu kontrollieren. Sie filtert den Datenverkehr basierend auf vordefinierten Sicherheitsregeln und hilft dabei, unerwünschten Zugriff sowie mögliche Bedrohungen abzuwehren. Diese Schutzschicht ist besonders kritisch, wenn der Raspberry Pi in einem öffentlich zugänglichen Netzwerk betrieben wird oder sensible Daten verarbeitet.
+
+
 \subsection{Kann - Anforderungen}
 
-\subsection{MQTT Frontend}
+\subsubsection{MQTT Frontend}
 Es kann ein MQTT - Frontend benutzt werden, um es Entwicklern einfacher zu machen die verschiedenen Nachrichten und Kommunikationskanäle nachzuvollziehen. 
 
-\subsection{Gesprochene Information über Patient in Hilfesituation}
+\subsubsection{Gesprochene Information über Patient in Hilfesituation}
 In den Minimalanforderungen unseres Systems weiß ein Pfleger nur das ein Patient Hilfe benötigt, nicht aber, welcher der Patienten. Um diese Problematik zu lösen, kann das System anstelle des Alarmtons über eine sprechende Stimme dem Pfleger mitteilen, welcher Patient Hilfe benötigt. 
 
 \subsubsection{Kameraview}
