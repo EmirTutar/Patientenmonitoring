@@ -9,12 +9,14 @@
 
 \subsection{Muss - Anforderungen}
 \begin{itemize}
-  \item  Fail2ban
   \item ddclient
   \item Alarm Ton
   \item Ubuntu 22.04 (LTS, Sec)
   \item Docker / Docker Compose
 \end{itemize}
+
+\subsection{Fail2ban}
+Fail2Ban ist ein entscheidendes Werkzeug zur Absicherung, die dazu dient, einen Server vor unautorisierten Zugriffsversuchen und Brute-Force-Angriffen zu schützen. Durch die Überwachung von Logdateien erkennt Fail2Ban auffällige Anmeldeversuche und blockiert die zugehörigen IP-Adressen automatisch für eine vordefinierte Zeitdauer. Mit Fail2Ban kann beispielsweise die IP-Adresse eines Geräts, das wiederholt versucht, ohne die korrekten Anmeldedaten eine Verbindung zum Server herzustellen, blockiert werden. Es lässt sich so konfigurieren, dass jede IP-Adresse, die mehr als dreimal pro Tag versucht, sich zu verbinden, gesperrt wird. \cite{Fail2ban} Diese Funktion ist besonders wichtig für die Minimierung von potenziellen Sicherheitsrisiken. Im Rahmen unseres Projekts auf dem Raspberry Pi wird Fail2Ban eine kritische Rolle spielen, indem es dazu beiträgt, die Zugriffskontrolle auf unsere Dienste wie SSH verstärken.
 
 \subsection{MQTT / MQTT-Client}
 Unser System wird aus mehreren verschiedenen Komponenten bestehen, die miteinander kommunizieren müssen. Diese Kommunikation muss über einen Message - Broker und das Protokoll ''MQTT'' erfolgen \cite{MQTT} . Um das Protokoll nutzen zu können benötigt es einen MQTT - Message Broker und Clients die ihre Nachrichten an diesen schicken, dass sie an die Clients verteilt werden, die darum gebeten haben Nachrichten eines Topics zu erhalten. 
