@@ -15,6 +15,7 @@ To get this project up and running on your local machine for development and tes
 1. Clone the repository to your local machine using `git clone <repository-url>`.
 2. Ensure that all external dependencies listed below are properly installed.
 3. Follow the build dependencies instructions to set up the development environment.
+4. Ensure you have credentials set. See the Gitlab - Wiki for all credentials needed.
 
 ## External dependencies
 This project relies on several external frameworks and libraries, including:
