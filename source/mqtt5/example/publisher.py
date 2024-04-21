@@ -1,12 +1,13 @@
 import paho.mqtt.client as mqtt
 import time
 import random
+import os
 
 # MQTT Broker Information
-broker_address = "localhost"  # Replace with your MQTT broker's address
-port = 1883  # MQTT default port
-username = "mosquitouser"  # If authentication is required
-password = "safepassword123"  # If authentication is required
+broker_address =  os.environ['MQTT_DOMAIN']  # Replace with your MQTT broker's address
+port = int(os.environ['MQTT_PORT']) 
+username = os.environ['MQTT_USERNAME']
+password = os.environ['MQTT_PASSWORD']
 
 # Callback function when connection is established
 def on_connect(client, userdata, flags, reason_code, properties=None):

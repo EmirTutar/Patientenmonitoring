@@ -1,3 +1,7 @@
+networks:
+  mqtt5_network:
+    name: mqtt5_network
+
 services:
   yolov5:
     build:
@@ -17,7 +21,42 @@ services:
     ports:
       - "1883:1883" #default mqtt port
       - "9001:9001" #default mqtt port for websockets
+    networks:
+      - mqtt5_network
     volumes: 
       - ./mqtt5/data:/mosquitto/data
       - ./mqtt5/log:/mosquitto/log
     restart: unless-stopped
+
+  mqtt5-publisher:
+    build:
+      context: ./mqtt5/example
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./mqtt5/example/.env
+        required: true # default
+      - path: ./mqtt5/example/.env.override
+        required: false
+    container_name: mqtt5_publisher
+    networks:
+      - mqtt5_network
+    command: ["python3", "-u", "publisher.py"]
+    restart: unless-stopped
+  
+  mqtt5-subscriber:
+    build:
+      context: ./mqtt5/example
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./mqtt5/example/.env
+        required: true # default
+      - path: ./mqtt5/example/.env.override
+        required: false
+    container_name: mqtt5_subscriber
+    networks:
+      - mqtt5_network
+    command: ["python3", "-u", "subscriber.py"]
+    restart: unless-stopped
+
+
+
