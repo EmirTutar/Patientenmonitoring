@@ -1,7 +1,7 @@
 stages:
   - compile_pdf
 
-compile_pdf:
+compile_documentation_pdf:
   stage: compile_pdf
   image: fbe-dockerreg.rwu.de/adm-iki/systems/gitlab-runner-docker-latex:master
   tags:
@@ -18,3 +18,21 @@ compile_pdf:
     name: "Documentation.pdf"
     paths:
       - doc/documentation/build/Doku.pdf
+
+compile_presentation_pdf:
+  stage: compile_pdf
+  image: fbe-dockerreg.rwu.de/adm-iki/systems/gitlab-runner-docker-latex:master
+  tags:
+    - latex
+  script:
+    - cd doc/presentation/Zwischenpraesentation1 && latexmk -pdf presentation.tex
+  only:
+    changes:
+      - doc/presentation/Zwischenpraesentation1/*
+  artifacts:
+    name: "Proposal"
+    expire_in: 4 weeks
+    when: on_success
+    name: "Presentation.pdf"
+    paths:
+      - doc/presentation/Zwischenpraesentation1/build/Presentation.pdf
