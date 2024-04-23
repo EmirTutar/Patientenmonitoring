@@ -25,12 +25,12 @@ compile_presentation_pdf:
   tags:
     - latex
   script:
-    - cd doc/presentation/Zwischenpraesentation1 && latexmk -pdf presentation.tex
+    - cd doc/presentation/Zwischenpraesentation1 && latexmk -pdf Presentation.tex
   only:
     changes:
       - doc/presentation/Zwischenpraesentation1/*
   artifacts:
-    name: "Proposal"
+    name: "Proposal_Presentation"
     expire_in: 4 weeks
     when: on_success
     name: "Presentation.pdf"
