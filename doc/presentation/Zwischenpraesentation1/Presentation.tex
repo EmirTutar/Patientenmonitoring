@@ -13,6 +13,9 @@
 \usepackage{palatino}
 \usepackage[default]{opensans}
 \useinnertheme{default}
+\usepackage[german]{babel}
+
+
 
 \setbeamertemplate{footline}{}
 \setbeamertemplate{navigation symbols}{}
@@ -56,24 +59,24 @@
 %	PRESENTATION BODY SLIDES
 %----------------------------------------------------------------------------------------
 
-\begin{frame}{Frame Title}
+\section{Systemaufbau}
+\begin{frame}{Systemaufbau}
 
   \begin{figure}
-    \begin{tikzpicture}[scale=0.]
+    \begin{tikzpicture}[scale=0.76]
 		
 		\draw [-, dashed, gray] (4,1)-- (-4,1)--(-4,3.5) --(4,3.5) --(4,1);
-		
-			\node at (-2.8 ,3) {BED VIEW};
+		\node at (-2.8 ,3) {BED VIEW};
 					
 		\node[inner sep=0pt] (whitehead) at (2,2.5)
 		{\includegraphics[width=.05\textwidth]{Images/camera.png}};
 		
-		\node[above] at (2.2,2.6) {\scriptsize Raspberry Pi und Kamera};
+		\node[above] at (2.2,2.6) {\scriptsize Raspberry Pi};
 		
 		\node[inner sep=0pt] (whitehead) at (0,2)
 		{\includegraphics[width=.1\textwidth]{Images/person_in_bed.png}};
 
-			\node at (-2.6 ,-1) {ROOM VIEW};
+			\node at (-2.5 ,-1) {ROOM VIEW};
 	
 			\draw [-, dashed, gray] (4,-0.5)-- (-4,-0.5)--(-4,-4) --(4, -4 ) --(4,-0.5);
 		
@@ -94,11 +97,11 @@
 		
 
 	  \node[inner sep=0pt] (whitehead) at (4.0,0.25)
-		{\includegraphics[width=.08\textwidth]{Images/server.png}};
+		{\includegraphics[width=.06\textwidth]{Images/server.png}};
 		
-				\node[below] at (2.2,-1.6) {\scriptsize Raspberry Pi und Kamera};
+				\node[below] at (2.2,-1.6) {\scriptsize Raspberry Pi};
 		
-		\node[below] at (4.0,-0.1) {\scriptsize MQTT Broker};
+		\node[below] at (4.0,0) {\scriptsize Broker};
 		
 			
 		
@@ -109,10 +112,10 @@
 	    \draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,-1.5) -- (5.5,-1.5);
 	     \draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,2.5) -- (5.5,2.5);
 	
-		\node at  (7.0,2.5) {Bed Detection};
+		\node at  (7.0,2.5) {\scriptsize Bed Detection};
 		
 		
-		\node at  (7.0,-1.5) {Fall Detection};
+		\node at  (7.0,-1.5) {\scriptsize Fall Detection};
 		
 		
 	
@@ -123,16 +126,17 @@
 		\node[inner sep=0pt] (whitehead) at (9.85,0.25)
 		{\includegraphics[width=.05\textwidth]{Images/raspi.png}};
 		
-		\node[below] at (10.,0.1) {\scriptsize Raspberry Pi };
+		\node[below] at (9.8,-0.1) {\scriptsize Pi };
 		
 		\draw [->]  (10.3,0.25) -- (10.6,0.25) ;
 		
-		\node[red] at  (11.2,0.25) {Alarm};
+		\node[red] at  (11.4,0.25) {Alarm};
 		
 		
 	\end{tikzpicture}
+        \caption{Darstellung des Systemaufbaus}
+	\label{fig:patient_monitoring}
 
-    \caption{Systemaufbau}
   \end{figure}
 
     
@@ -178,85 +182,89 @@
 \end{enumerate}
 \end{frame}
 
-%------------------------------------------------
 
-\section{Referencing}
 
+\section{Aktueller Stand}
+\subsection{Setup Hardware}
 \begin{frame}
-	\frametitle{Citing References}
-	
-	An example of the \texttt{\textbackslash cite} command to cite within the presentation:
-	
-	\bigskip % Vertical whitespace
-	
-	This statement requires citation \cite{p1,p2}.
+\frametitle{Setup}
+\framesubtitle{Hardware}
+\begin{enumerate}
+    \item 2 Raspberry Pi sind da
+    \item 1 Kamera ist da
+    \item Ubuntu 22.04 ist auf der SD Karte installiert
+\end{enumerate}
 \end{frame}
 
-%------------------------------------------------
 
-\begin{frame} % Use [allowframebreaks] to allow automatic splitting across slides if the content is too long
-	\frametitle{References}
-	
-	\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below, you may need to use multiple columns and/or reduce the font size further if you have many references
-		\footnotesize % Reduce the font size in the bibliography
-		
-		\bibitem[Smith, 2022]{p1}
-			John Smith (2022)
-			\newblock Publication title
-			\newblock \emph{Journal Name} 12(3), 45 -- 678.
-			
-		\bibitem[Kennedy, 2023]{p2}
-			Annabelle Kennedy (2023)
-			\newblock Publication title
-			\newblock \emph{Journal Name} 12(3), 45 -- 678.
-	\end{thebibliography}
-\end{frame}
 
-%----------------------------------------------------------------------------------------
-%	ACKNOWLEDGMENTS SLIDE
-%----------------------------------------------------------------------------------------
-
+\subsection{Setup Software}
 \begin{frame}
-	\frametitle{Acknowledgements}
-	
-	\begin{columns}[t] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-		\begin{column}{0.45\textwidth} % Left column width
-			\textbf{Smith Lab}
-			\begin{itemize}
-				\item Alice Smith
-				\item Devon Brown
-			\end{itemize}
-			\textbf{Cook Lab}
-			\begin{itemize}
-				\item Margaret
-				\item Jennifer
-				\item Yuan
-			\end{itemize}
-		\end{column}		
-		\begin{column}{0.5\textwidth} % Right column width
-			\textbf{Funding}
-			\begin{itemize}
-				\item British Royal Navy
-				\item Norwegian Government
-			\end{itemize}
-		\end{column}
-	\end{columns}
+\frametitle{Setup}
+\framesubtitle{Software}
+
+\begin{enumerate}
+    \item Docker und Docker Compose
+    \item UFW
+    \item DDClient (noch ohne Docker)
+\end{enumerate}
 \end{frame}
 
-%----------------------------------------------------------------------------------------
-%	CLOSING SLIDE
-%----------------------------------------------------------------------------------------
-
-\begin{frame}[plain] % The optional argument 'plain' hides the headline and footline
-	\begin{center}
-		{\Huge The End}
-		
-		\bigskip\bigskip % Vertical whitespace
-		
-		{\LARGE Questions? Comments?}
-	\end{center}
+\subsection{Alarm}
+\begin{frame}
+\frametitle{Aktueller Stand}
+\framesubtitle{Alarm}
 \end{frame}
 
-%----------------------------------------------------------------------------------------
+
+
+\subsection{MQTT}
+\begin{frame}
+\frametitle{Aktueller Stand}
+\framesubtitle{MQTT}
+\begin{enumerate}
+    \item Konzept ausgearbeitet
+    \item Erste Implementation \& Local - Deployment
+    \item MR in Review
+\end{enumerate}
+\end{frame}
+
+
+\subsection{YOLO}
+\begin{frame}
+\frametitle{Aktueller Stand}
+\framesubtitle{YOLO}
+\begin{enumerate}
+    \item Pretrained Model für Anforderugnen gefunden 
+    \item Container aufgesezt
+    \item Inklusion in MQTT aussetehend
+\end{enumerate}
+
+\end{frame}
+
+
+\subsection{Matrix}
+\begin{frame}
+\frametitle{Aktueller Stand}
+\framesubtitle{Matrix}
+\begin{enumerate}
+    \item Konzept ausgearbeitet
+    \item Container aufgesezt
+    \item MR in Review
+\end{enumerate}
+\end{frame}
+
+
+\section{Todo}
+\begin{frame}
+\frametitle{Todo}
+\begin{enumerate}
+    \item Zusammenführen der Systeme
+    \item Evaluation
+    \item Mailcow
+    \item Alarm Setup
+\end{enumerate}
+\end{frame}
+
 
 \end{document} 
