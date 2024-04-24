@@ -26,7 +26,7 @@ services:
   postgres:
       image: postgres:16.2-alpine3.19
       container_name: postgres_container
-      env_file: .postgres.env
+      env_file: ./matrix/server/.postgres.env
       environment:
       - POSTGRES_INITDB_ARGS=-E UTF8 --lc-collate=C --lc-ctype=C
       ports:
@@ -46,6 +46,12 @@ services:
         - ./matrix/server/certbot/conf/:/etc/nginx/ssl/:ro
   certbot:
       image: certbot/certbot:v2.10.0
+      depends_on:
+      - nginx
+      command: >-
+             certonly --reinstall --webroot --webroot-path=/var/www/certbot
+             --email ${EMAIL} --agree-tos --no-eff-email
+             -d ${DOMAIN}
       volumes:
       - ./matrix/server/certbot/www/:/var/www/certbot/:rw
       - ./matrix/server/certbot/conf/:/etc/letsencrypt/:rw
@@ -55,5 +61,5 @@ services:
     build:
       context: ./matrix/client
       dockerfile: Dockerfile
-    env_file: .nio.env
+    env_file: ./matrix/client/.nio.env
 
