@@ -7,10 +7,9 @@ services:
     build:
       context: ./yolov5
       dockerfile: Dockerfile
+    env_file: ./yolov5/.yolov5.env
     devices:
       - /dev/video0:/dev/video0  # Acces to camera
-    ports:
-      - "1883:1883"
 
   # mqtt5 eclipse-mosquitto
   mqtt5:
