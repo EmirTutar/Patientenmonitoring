@@ -1,3 +1,7 @@
+networks:
+  mqtt5_network:
+    name: mqtt5_network
+
 services:
 
   ## fall detection setup
@@ -62,4 +66,54 @@ services:
       context: ./matrix/client
       dockerfile: Dockerfile
     env_file: ./matrix/client/.nio.env
+
+
+
+  # mqtt5 eclipse-mosquitto
+  mqtt5:
+    build:
+      context: ./mqtt5
+      dockerfile: Dockerfile
+    container_name: mqtt5
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    networks:
+      - mqtt5_network
+    volumes: 
+      - ./mqtt5/data:/mosquitto/data
+      - ./mqtt5/log:/mosquitto/log
+    restart: unless-stopped
+
+  mqtt5-publisher:
+    build:
+      context: ./mqtt5/example
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./mqtt5/example/.env
+        required: true # default
+      - path: ./mqtt5/example/.env.override
+        required: false
+    container_name: mqtt5_publisher
+    networks:
+      - mqtt5_network
+    command: ["python3", "-u", "publisher.py"]
+    restart: unless-stopped
+  
+  mqtt5-subscriber:
+    build:
+      context: ./mqtt5/example
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./mqtt5/example/.env
+        required: true # default
+      - path: ./mqtt5/example/.env.override
+        required: false
+    container_name: mqtt5_subscriber
+    networks:
+      - mqtt5_network
+    command: ["python3", "-u", "subscriber.py"]
+    restart: unless-stopped
+
+
 
