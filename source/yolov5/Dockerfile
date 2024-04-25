@@ -15,4 +15,6 @@ COPY main.py .
 
 COPY model.pt .
 
+COPY config.yaml .
+
 CMD ["python3", "main.py"]

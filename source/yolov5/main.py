@@ -5,6 +5,8 @@ import random
 import cv2
 import os
 import time
+import yaml
+
 
 # MQTT Broker Information
 broker_address =  os.environ['MQTT_DOMAIN']  # Replace with your MQTT broker's address
@@ -12,29 +14,33 @@ port = int(os.environ['MQTT_PORT'])
 username = os.environ['MQTT_USERNAME']
 password = os.environ['MQTT_PASSWORD']
 
+yaml_path = "./config.yaml"
+with open(yaml_path, 'r') as file:
+    config = yaml.safe_load(file)
 
-threshold = 0.5 
-fall_counter = 0
-fall_threshold = 1
-publish_time = 2 # 2 fps
-
-
-# Callback function when connection is established
-def on_connect(client, userdata, flags, reason_code, properties=None):
-    print("Connected with result code "+str(reason_code))
-    # Subscribe to topics if needed
-    # client.subscribe("topic/to/subscribe")
-
-# Callback function when a message is published
-def on_publish(client, userdata, mid, reason_code, properties=None):
-    print("Message Published")
-
+confidence_threshold = config['confidence_threshold']
+fall_counter = config['fall_counter']
+fall_threshold = config['fall_threshold']
+publish_time = config['publish_time']
+topic_name = config['topic_name']
+detection_class_name =  config['detection_class_name']
+message_detected = config["message_detected"]
+message_not_detected = config["message_not_detected"]
+camera_path=  config["camera_path"]
+model_name = config["model_name"]
+model_type = config["model_type"]
+model_device = config["model_device"]
+custom_model_name = config["custom_model_name"]
+client_id_prefix = config["client_id_prefix"]
+mqtt_prtocol = config["mqtt_prtocol"]
+mqtt_connection_sucess_msg = config["mqtt_connection_sucess_msg"]
+result_confidence_column = config["result_confidence_column"]
+result_name_column = config["result_name_column"]
 
 # Create MQTT client instance
-client = mqtt.Client(client_id=f'python-mqtt-{random.randint(0, 1000)}', protocol=mqtt.MQTTv5, transport="tcp", callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
+client = mqtt.Client(client_id=client_id_prefix+str({random.randint(0, 1000)}), protocol=mqtt.MQTTv5, transport=mqtt_prtocol, callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
 # Set the callbacks
-client.on_connect = on_connect
-client.on_publish = on_publish
+on_connect = lambda client, userdata, flags, rc: print(mqtt_connection_sucess_msg+str(rc))
 
 
 # If authentication is needed
@@ -47,10 +53,10 @@ client.connect(broker_address, port)
 client.loop_start()
 
 # Load model
-model = torch.hub.load("ultralytics/yolov5", "custom", path="model.pt", device='cpu', trust_repo=True)
+model = torch.hub.load(model_name, model_type, path=custom_model_name, device=model_device, trust_repo=True)
 
 # Open videostream
-cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L)
+cap = cv2.VideoCapture(camera_path, cv2.CAP_V4L)
 
 # Specify image size
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -58,7 +64,6 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 
 
-topic_name = "fall_detected"
 # Loop through videoframes
 while cap.isOpened():
     # Read frame
@@ -72,14 +77,14 @@ while cap.isOpened():
 
         # Do inference
         results = model(rgb_image)
-        message = "0"
+        message = message_not_detected
 
         made_fall_detection = False
         df = results.pandas().xyxy[0]
         for index, row in df.iterrows():
-            confidence = row['confidence']
-            if confidence > threshold:
-                if(row['name'] == "fall detected"):
+            confidence = row[result_confidence_column]
+            if confidence > confidence_threshold:
+                if(row[result_name_column] == detection_class_name):
                     made_fall_detection = True
 
         if made_fall_detection:
@@ -88,9 +93,9 @@ while cap.isOpened():
             fall_counter = 0
         
         if fall_counter >= fall_threshold:
-             message = "1"
+             message = message_detected
 
-        client.publish("fall_detected", payload=message, qos=1)
+        client.publish(topic_name, payload=message, qos=1)
 
 
         results.print()
