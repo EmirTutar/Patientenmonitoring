@@ -100,8 +100,10 @@ while cap.isOpened():
              message = message_detected
 
         client.publish(fall_detected_topic_name, payload=message, qos=1)
+        
+         
 
-        img_str = cv2.imencode('.jpg', np.squeeze(results.render()))[1].tobytes() # publish current detection as image
+        img_str = cv2.imencode('.jpg', cv2.cvtColor(np.squeeze(results.render()), cv2.COLOR_RGB2BGR))[1].tobytes() # publish current detection as image
         client.publish(video_topic_name, payload=img_str, qos=1)
 
         results.print()
