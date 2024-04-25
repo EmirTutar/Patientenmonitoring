@@ -21,6 +21,8 @@ with open(yaml_path, 'r') as file:
 
 cap_prop_frame_width = config["cap_prop_frame_width"]
 cap_prop_frame_height = config["cap_prop_frame_height"]
+cap_prop_buffersize = config["cap_prop_buffersize"]
+cap_prop_fps = config["cap_prop_fps"]
 confidence_threshold = config['confidence_threshold']
 fall_counter = config['fall_counter']
 fall_threshold = config['fall_threshold']
@@ -65,6 +67,9 @@ cap = cv2.VideoCapture(camera_path, cv2.CAP_V4L)
 # Specify image size
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, cap_prop_frame_width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, cap_prop_frame_height)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, cap_prop_buffersize)
+cap.set( cv2.CAP_PROP_FPS, cap_prop_fps)
+
 
 
 

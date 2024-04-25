@@ -1,5 +1,7 @@
 cap_prop_frame_width: 640
 cap_prop_frame_height: 480
+cap_prop_buffersize: 1
+cap_prop_fps: 2
 confidence_threshold: 0.5
 fall_counter: 0
 fall_threshold: 1
