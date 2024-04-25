@@ -1,8 +1,11 @@
+cap_prop_frame_width: 640
+cap_prop_frame_height: 480
 confidence_threshold: 0.5
 fall_counter: 0
 fall_threshold: 1
 publish_time: 2  # 2 fps
-topic_name: "fall_detected" # mqqt topic name
+fall_detected_topic_name: "fall_detected" # mqqt topic name
+video_topic_name: "fall_detected_video"
 detection_class_name: "fall detected"
 message_detected: "1"
 message_not_detected: "0"

@@ -18,11 +18,15 @@ yaml_path = "./config.yaml"
 with open(yaml_path, 'r') as file:
     config = yaml.safe_load(file)
 
+
+cap_prop_frame_width = config["cap_prop_frame_width"]
+cap_prop_frame_height = config["cap_prop_frame_height"]
 confidence_threshold = config['confidence_threshold']
 fall_counter = config['fall_counter']
 fall_threshold = config['fall_threshold']
 publish_time = config['publish_time']
-topic_name = config['topic_name']
+fall_detected_topic_name = config['fall_detected_topic_name']
+video_topic_name = config["video_topic_name"]
 detection_class_name =  config['detection_class_name']
 message_detected = config["message_detected"]
 message_not_detected = config["message_not_detected"]
@@ -59,8 +63,8 @@ model = torch.hub.load(model_name, model_type, path=custom_model_name, device=mo
 cap = cv2.VideoCapture(camera_path, cv2.CAP_V4L)
 
 # Specify image size
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, cap_prop_frame_width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, cap_prop_frame_height)
 
 
 
@@ -95,8 +99,10 @@ while cap.isOpened():
         if fall_counter >= fall_threshold:
              message = message_detected
 
-        client.publish(topic_name, payload=message, qos=1)
+        client.publish(fall_detected_topic_name, payload=message, qos=1)
 
+        img_str = cv2.imencode('.jpg', np.squeeze(results.render()))[1].tobytes() # publish current detection as image
+        client.publish(video_topic_name, payload=img_str, qos=1)
 
         results.print()
         elapsed_time = time.time() - start_time

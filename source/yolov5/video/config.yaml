@@ -1,0 +1,4 @@
+client_id_prefix: "python-mqtt-"
+mqtt_prtocol: "tcp"
+mqtt_connection_sucess_msg: "Connected with result code "
+video_topic_name: "fall_detected_video"
