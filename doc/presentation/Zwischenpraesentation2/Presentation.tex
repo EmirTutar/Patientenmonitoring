@@ -14,6 +14,7 @@
 \usepackage[default]{opensans}
 \useinnertheme{default}
 \usepackage[german]{babel}
+\usepackage{caption}
 
 
 
@@ -190,10 +191,35 @@
 \frametitle{Setup}
 \framesubtitle{Hardware}
 \begin{enumerate}
-    \item 2 Raspberry Pi sind da
+    \item 3 Raspberry Pi
     \item 1 Kamera ist da
-    \item Ubuntu 22.04 ist auf der SD Karte installiert
+    \item Ubuntu 22.04 installiert
 \end{enumerate}
+\end{frame}
+
+
+\section{Aktueller Stand}
+\subsection{Raspberry PI}
+\begin{frame}
+	\frametitle{Setup}
+	\framesubtitle{Raspberry PI}
+ \begin{figure}
+	\centering
+	\begin{minipage}[t]{0.45\textwidth} 
+		\centering
+		\includegraphics[width=0.8\textwidth]{Images/Raspberry Pi and Camera Open.jpg} 
+		\caption*{Aufbau im Gehäuse}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.45\textwidth} 
+		\centering
+		\includegraphics[width=0.6\textwidth]{Images/Raspberry Pi and Camera Closed.jpg}
+		\caption*{Gehäuse mit Kamera}
+	\end{minipage}
+	\hfill
+	\caption{Raspberry Pi mit Kamera}
+	\label{fig:Raspberry PI}
+\end{figure} 
 \end{frame}
 
 
@@ -242,8 +268,36 @@
 \begin{enumerate}
     \item Pretrained Model für Anforderugnen gefunden 
     \item Container aufgesezt
-    \item Inklusion in MQTT aussetehend
+    \item Inklusion in MQTT  fertig
 \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Aktueller Stand}
+\framesubtitle{YOLO}
+\begin{figure}
+	\centering
+	\begin{minipage}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Images/walking.png}
+		\caption*{''walking''}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Images//sitting.png}
+		\caption*{''sitting''}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Images//fallen.png}
+		\caption*{ ''fall detected''}
+	\end{minipage}
+	\caption{YOLOv5 Klassen}
+	\label{fig:yolo_classes}
+\end{figure}
 
 \end{frame}
 
@@ -253,10 +307,32 @@
 \frametitle{Aktueller Stand}
 \framesubtitle{Matrix}
 \begin{enumerate}
-    \item Konzept ausgearbeitet
-    \item Container aufgesezt
-    \item MR in Review
+    \item Matrix Server aufgesetzt
+    \item E-Mail Bridge eingebunden
+    \item Element als Client ausgewählt
 \end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Aktueller Stand}
+	\framesubtitle{Matrix}
+ \begin{figure}
+	\centering
+	\begin{minipage}[t]{0.45\textwidth} 
+		\centering
+		\includegraphics[width=\textwidth]{Images/Matrix 2.png} 
+		\caption*{Matrix Server}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.45\textwidth} 
+		\centering
+		\includegraphics[width=\textwidth]{Images/Matrix.png} 
+		\caption*{E-Mail Bridge in Element}
+	\end{minipage}
+	\hfill
+	\caption{Matrix Setup}
+	\label{fig:Matrix}
+\end{figure} 
 \end{frame}
 
 
