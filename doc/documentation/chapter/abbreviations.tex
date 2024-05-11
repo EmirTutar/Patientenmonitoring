@@ -1,28 +1,204 @@
 \selectlanguage{german}
-
+\clearpage
 \section{Grundbegriffe}
 
 \subsection{Docker}
-Docker ist eine Open-Source-Softwareplattform, die die Virtualisierung auf Betriebssystemebene nutzt, um Software in Paketen, sogenannten Containern, zu entwickeln, auszuliefern und auszuführen. Container ermöglichen es, eine Anwendung mit allen Teilen, die sie zum Ausführen benötigt, wie Bibliotheken und andere Abhängigkeiten, zu kapseln und auf jedem Linux-System auszuführen, als wären sie auf einem dedizierten Computer installiert. Dies gewährleistet die Konsistenz unabhängig von der Umgebung und verbessert die Sicherheit, da Anwendungen isoliert voneinander ausgeführt werden.
+\label{subsec:docker}
+Docker ist eine Open-Source-Softwareplattform, die die Virtualisierung auf Betriebssystemebene nutzt, um Software in Paketen, sogenannten Containern, zu entwickeln, auszuliefern und auszuführen. Container ermöglichen es, eine Anwendung mit allen Teilen, die sie zum Ausführen benötigt, wie Bibliotheken und andere Abhängigkeiten, zu kapseln und auf jedem Linux-System auszuführen, als wären sie auf einem Computer installiert \cite{Aerisdocker} . Dies gewährleistet die Konsistenz unabhängig von der Umgebung und verbessert die Sicherheit, da Anwendungen isoliert voneinander ausgeführt werden \cite{Docker}.
 
-\subsection{MQTT (Message Queuing Telemetry Transport)}
-MQTT ist ein Netzwerkprotokoll, das speziell für die Bedürfnisse von Internet-of-Things (IoT)-Anwendungen entwickelt wurde. Es ermöglicht es Geräten, Daten in einem schwach vernetzten Netzwerk effizient zu übertragen. Das Protokoll basiert auf einem Publisher/Subscriber-Modell, das eine hohe Nachrichtenübermittlungseffizienz bei gleichzeitig geringem Ressourcenbedarf bietet. MQTT wird häufig in der Heimautomatisierung, in der Medizintechnik und anderen Bereichen verwendet, in denen eine zuverlässige und effiziente Kommunikation zwischen einer Vielzahl von Geräten erforderlich ist.
+\subsection{Container}
+\label{subsec:container}
+Ein Container in der Informationstechnologie, ist eine leichtgewichtige, ausführbare Einheit, die Softwarepakete, ihre Abhängigkeiten und andere notwendige Komponenten enthält. Container bieten eine isolierte Umgebung für die Ausführung von Anwendungen, sodass diese konsistent und zuverlässig auf unterschiedlichen Systemen funktionieren können, ohne von anderen Anwendungen beeinflusst zu werden \cite{Container}.
+
+\subsection{Mailcow}
+\label{subsec:mailcow}
+Mailcow ist eine Open-Source-Mailserver-Lösung, die auf Docker basiert und die Verwaltung von E-Mail-Diensten vereinfacht. Sie bietet ein integriertes Webinterface zur Konfiguration und Verwaltung von E-Mail-Konten, Domains, Sicherheitseinstellungen und weiteren Diensten wie Kalender und Kontakte. Mailcow integriert auch Anti-Spam- und Anti-Virus-Tools, um eine sichere und effiziente E-Mail-Kommunikation zu gewährleisten \cite{Mailcow}.
+
+\subsection{MQTT}
+\label{subsec:mqtt}
+MQTT (Message Queuing Telemetry Transport) ist ein Netzwerkprotokoll, das speziell für die Bedürfnisse von Internet-of-Things (IoT)-Anwendungen entwickelt wurde. Es ermöglicht es Geräten, Daten in einem schwach vernetzten Netzwerk effizient zu übertragen. Das Protokoll basiert auf einem Publisher/Subscriber-Modell, das eine hohe Nachrichtenübermittlungseffizienz bei gleichzeitig geringem Ressourcenbedarf bietet \cite{MQTT}. MQTT wird häufig in der Heimautomatisierung, in der Medizintechnik und anderen Bereichen verwendet, in denen eine zuverlässige und effiziente Kommunikation zwischen einer Vielzahl von Geräten erforderlich ist.
 
 \subsection{Raspberry Pi}
-Der Raspberry Pi ist ein kleiner, preiswerter Einplatinencomputer, der ursprünglich für Bildungszwecke entwickelt wurde, aber aufgrund seiner Vielseitigkeit und Leistungsfähigkeit in einer Vielzahl von industriellen und Hobby-Projekten eingesetzt wird. Der Pi kann mit verschiedenen Betriebssystemen wie Raspbian, einem Debian-basierten Linux, betrieben werden und unterstützt eine breite Palette von Anwendungen und Programmiersprachen.
+\label{subsec:pi}
+Der Raspberry Pi ist ein kleiner, preiswerter Einplatinencomputer, der ursprünglich für Bildungszwecke entwickelt wurde, aber aufgrund seiner Vielseitigkeit und Leistungsfähigkeit in einer Vielzahl von industriellen und Hobby-Projekten eingesetzt wird. Der Pi kann mit verschiedenen Betriebssystemen wie Raspbian, einem Debian-basierten Linux, betrieben werden und unterstützt eine breite Palette von Anwendungen und Programmiersprachen \cite{Raspberry}.
 
 \subsection{Fail2Ban}
-Fail2Ban ist eine Intrusion Prevention Software, die durch Überwachen von Serverprotokollen auf Muster von Missbrauchsversuchen wie zu viele fehlgeschlagene Anmeldeversuche reagiert. Wenn ein solches Muster erkannt wird, konfiguriert Fail2Ban die Firewall des Hosts temporär so, dass sie IP-Adressen blockiert, von denen aus die verdächtigen Aktivitäten ausgehen, um so das System zu schützen.
+\label{subsec:f2b}
+Fail2Ban ist eine Intrusion Prevention Software, die durch Überwachen von Serverprotokollen auf Muster von Missbrauchsversuchen wie zu viele fehlgeschlagene Anmeldeversuche reagiert. Wenn ein solches Muster erkannt wird, konfiguriert Fail2Ban die Firewall des Hosts temporär so, dass sie IP-Adressen blockiert, von denen aus die verdächtigen Aktivitäten ausgehen, um so das System zu schützen \cite{Fail2ban}.
 
 \subsection{Ubuntu 22.04 LTS}
-Ubuntu 22.04 LTS ist eine Version des Ubuntu-Betriebssystems, die auf Stabilität und langfristige Unterstützung ausgerichtet ist, was sie besonders für Unternehmensumgebungen geeignet macht. Es bietet regelmäßige Sicherheitsupdates für fünf Jahre, was eine zuverlässige Grundlage für Projekte gewährleistet, die eine langfristige Wartbarkeit erfordern.
+\label{subsec:ubuntu}
+Ubuntu 22.04 LTS ist eine Version des Ubuntu-Betriebssystems, die auf Stabilität und langfristige Unterstützung ausgerichtet ist, was sie besonders für Unternehmensumgebungen geeignet macht. Es bietet regelmäßige Sicherheitsupdates für fünf Jahre, was eine zuverlässige Grundlage für Projekte gewährleistet, die eine langfristige Wartbarkeit erfordern \cite{Ubuntu}.
+
+\subsection{Firewall}
+\label{subsec:firewall}
+Eine Firewall ist ein Sicherheitssystem, das den eingehenden und ausgehenden Netzwerkverkehr überwacht und steuert, basierend auf vordefinierten Sicherheitsregeln. Sie dient dazu, unerwünschten oder schädlichen Datenverkehr zu blockieren und somit Netzwerke und angeschlossene Geräte vor Angriffen und externen Bedrohungen zu schützen \cite {Firewall}.
+
+\subsection{SSH (Secure Shell)}
+\label{subsec:ssh}
+SSH ist ein Netzwerkprotokoll, das für eine sichere Kommunikation über unsichere Netzwerke konzipiert wurde. Es ermöglicht verschlüsselten Datentransfer und Fernsteuerung von Netzwerkgeräten, was die sichere Verwaltung von Servern und anderen Netzwerkkomponenten erlaubt \cite{SSH}.
 
 \subsection{DDclient}
-DDclient ist ein Perl-Script, das zur automatischen Aktualisierung von DNS-Einträgen genutzt wird, um dynamisch zugewiesene IP-Adressen mit einem festen Hostnamen zu verknüpfen. Dies ist besonders nützlich in Umgebungen mit dynamischer IP-Zuweisung, wie sie bei vielen Internetdienstanbietern üblich ist.
+\label{subsec:ddclient}
+DDclient ist ein Perl-Script, das zur automatischen Aktualisierung von DNS-Einträgen genutzt wird, um dynamisch zugewiesene IP-Adressen mit einem festen Hostnamen zu verknüpfen. Dies ist besonders nützlich in Umgebungen mit dynamischer IP-Zuweisung, wie sie bei vielen Internetdienstanbietern üblich ist \cite{Ddclient} \cite{Raspberry}.
 
-\subsection{SMTP-Server}
-Ein Simple Mail Transfer Protocol (SMTP)-Server ist ein Netzwerkserver, der E-Mails sendet und empfängt. Er spielt eine zentrale Rolle in der elektronischen Kommunikation und wird häufig in Unternehmensumgebungen eingesetzt, um die interne und externe Kommunikation zu verwalten.
+\subsection{DNS-Einträge}
+\label{subsec:dnsentries}
+DNS-Einträge (Domain Name System Einträge) sind Informationen in einer DNS-Datenbank, die dazu dienen, Domainnamen in IP-Adressen umzuwandeln. Diese Einträge ermöglichen es Computern, Netzwerkressourcen zu identifizieren und zu lokalisieren, wodurch Benutzer einfacher auf Websites und andere im Internet gehostete Dienste zugreifen können.
+
+\subsection{Log-Dateien}
+\label{subsec:logfiles}
+Log-Dateien sind Dateien, in denen Ereignisse aufgezeichnet werden, die in einem Betriebssystem oder einer Softwareanwendung stattfinden. Sie sind entscheidend für das Debugging und die Überwachung von Systemen, da sie detaillierte Informationen über den Betriebsstatus und aufgetretene Fehler enthalten.
+
+\subsection{Brute-Force-Angriffe}
+\label{subsec:bruteforce}
+Brute-Force-Angriffe sind eine Methode der Cyberkriminalität, bei der automatisierte Software verwendet wird, um viele Kombinationen von Benutzernamen und Passwörtern zu erraten, um unerlaubten Zugriff auf Benutzerkonten zu erhalten. Diese Angriffe können durch starke Passwörter und zusätzliche Sicherheitsmaßnahmen wie Captchas oder Zwei-Faktor-Authentifizierung erschwert werden.
+
+\subsection{SMTP}
+\label{subsec:smtp}
+Ein Simple Mail Transfer Protocol (SMTP)-Server ist ein Netzwerkserver, der E-Mails sendet und empfängt. Er spielt eine zentrale Rolle in der elektronischen Kommunikation und wird häufig in Unternehmensumgebungen eingesetzt, um die interne und externe Kommunikation zu verwalten \cite{Smtp}.
 
 \subsection{Matrix}
-Matrix ist ein offenes Protokoll für Echtzeitkommunikation, das speziell für die Anforderungen des modernen Internets entwickelt wurde. Es unterstützt verschlüsselte Chat-, VoIP- und Videokonferenzdienste und ermöglicht die Interoperabilität über verschiedene Kommunikationsplattformen hinweg.
+\label{subsec:matrix}
+Matrix ist ein offenes Protokoll für Echtzeitkommunikation, das speziell für die Anforderungen des modernen Internets entwickelt wurde. Es unterstützt verschlüsselte Chat-, VoIP- und Videokonferenzdienste und ermöglicht die Interoperabilität über verschiedene Kommunikationsplattformen hinweg \cite{Matrix}.
 
+\subsection{YOLO}
+\label{subsec:yolo}
+YOLO (You Only Look Once) ist ein schnelles, effizientes Objekterkennungssystem, das in einem einzigen Durchlauf durch das neuronale Netzwerk sowohl die Klassifizierung als auch die Lokalisierung von Objekten in Bildern durchführt. Dieses Modell ist dafür bekannt, dass es Echtzeitverarbeitungsgeschwindigkeiten erreicht, was es besonders nützlich für Anwendungen macht, die eine sofortige Objekterkennung erfordern, wie beispielsweise in der Videoüberwachung und im autonomen Fahren \Cite{Yolo}. 
+
+\subsection{Bett-Detection}
+\label{subsec:beddetection}
+Bett-Detection bezieht sich auf die automatische Erkennung der Präsenz oder Abwesenheit einer Person im Bett mithilfe von Kameraüberwachung. Dieses System ist besonders nützlich in medizinischen Überwachungsumgebungen, um sicherzustellen, dass Patienten sicher sind und sich an den zugewiesenen Orten befinden.
+
+\subsection{Fall-Detection}
+\label{subsec:falldetection}
+Fall-Detection umfasst die Technologie zur Erkennung von Stürzen, insbesondere in Umgebungen wie Krankenhäusern oder Pflegeheimen, indem ungewöhnliche Bewegungen oder Lagen der Patienten analysiert werden. Diese Systeme setzen fortschrittliche Technik ein, um Stürze sofort zu erkennen und entsprechende Alarme auszulösen, was eine schnelle Reaktion des Pflegepersonals ermöglicht.
+
+\subsection{Alarm}
+\label{subsec:alarm}
+Ein Alarmsystem im Kontext dieses Projekts besteht aus einem Raspberry Pi, der mit LEDs, einem kleinen Piepser für akustische Signale und einem Steckboard verbunden ist, das an die GPIO-Pins des Raspberry Pi angeschlossen ist. Dieses Setup ermöglicht es, visuelle und akustische Warnungen auszugeben, um auf bestimmte Ereignisse oder Zustände, wie z.B. erkannte Gefahren, aufmerksam zu machen.
+
+\subsection{SSL}
+\label{subsec:ssl}
+SSL, oder Secure Sockets Layer, ist ein Sicherheitsprotokoll, das dazu dient, die Datenübertragung zwischen einem Webbrowser und einem Server zu verschlüsseln. Es schützt sensible Informationen vor dem Abfangen durch unbefugte Dritte während der Übertragung im Internet.
+
+\subsection{SSL-Zertifikat}
+\label{subsec:sslcertificate}
+Ein SSL-Zertifikat ist eine digitale Datei, die die Identität einer Website bestätigt und eine verschlüsselte Verbindung zwischen einem Webserver und dem Browser des Benutzers ermöglicht. Es verwendet Public Key-Infrastruktur, um Daten zu verschlüsseln und zu verifizieren, dass die Kommunikation nur zwischen den vorgesehenen Empfängern stattfindet \cite {SSL}.
+
+\subsection{Reverse-Proxy}
+\label{subsec:reverseproxy}
+Ein Reverse-Proxy ist ein Server, der als Vermittler zwischen den Endbenutzern und den Diensten, auf die sie zugreifen, fungiert, um Anfragen an die entsprechenden Server weiterzuleiten und Antworten zurückzusenden. Er wird häufig eingesetzt, um die Lastverteilung zu verbessern, die Sicherheit zu erhöhen und die Leistung von Webanwendungen zu optimieren\cite{Reverseproxy}.
+
+
+% 	Dies sind die Glossary Einträge die noch besprochen werden müssen, wie es am besten in das %	Projekt integriert wird:
+
+\newglossaryentry{docker}{
+	name={Docker},
+	description={Eine Open-Source-Softwareplattform, die die Virtualisierung auf Betriebssystemebene nutzt, um Software in Paketen, sogenannten Containern, zu entwickeln, auszuliefern und auszuführen. Container ermöglichen es, eine Anwendung mit allen Teilen, die sie zum Ausführen benötigt, wie Bibliotheken und andere Abhängigkeiten, zu kapseln und auf jedem Linux-System auszuführen, als wären sie auf einem Computer installiert.}
+}
+
+\newglossaryentry{container}{
+	name={Container},
+	description={Eine leichtgewichtige, ausführbare Einheit, die Softwarepakete, ihre Abhängigkeiten und andere notwendige Komponenten enthält. Container bieten eine isolierte Umgebung für die Ausführung von Anwendungen, sodass diese konsistent und zuverlässig auf unterschiedlichen Systemen funktionieren können, ohne von anderen Anwendungen beeinflusst zu werden.}
+}
+
+\newglossaryentry{mailcow}{
+	name={Mailcow},
+	description={Eine Open-Source-Mailserver-Lösung, die auf Docker basiert und die Verwaltung von E-Mail-Diensten vereinfacht. Sie bietet ein integriertes Webinterface zur Konfiguration und Verwaltung von E-Mail-Konten, Domains, Sicherheitseinstellungen und weiteren Diensten wie Kalender und Kontakte. Mailcow integriert auch Anti-Spam- und Anti-Virus-Tools, um eine sichere und effiziente E-Mail-Kommunikation zu gewährleisten.}
+}
+
+\newglossaryentry{mqtt}{
+	name={MQTT},
+	description={Ein Netzwerkprotokoll, das speziell für die Bedürfnisse von Internet-of-Things (IoT)-Anwendungen entwickelt wurde. Es ermöglicht es Geräten, Daten in einem schwach vernetzten Netzwerk effizient zu übertragen. Das Protokoll basiert auf einem Publisher/Subscriber-Modell, das eine hohe Nachrichtenübermittlungseffizienz bei gleichzeitig geringem Ressourcenbedarf bietet.}
+}
+
+\newglossaryentry{raspberrypi}{
+	name={Raspberry Pi},
+	description={Ein kleiner, preiswerter Einplatinencomputer, der ursprünglich für Bildungszwecke entwickelt wurde, aber aufgrund seiner Vielseitigkeit und Leistungsfähigkeit in einer Vielzahl von industriellen und Hobby-Projekten eingesetzt wird. Der Pi kann mit verschiedenen Betriebssystemen wie Raspbian betrieben werden und unterstützt eine breite Palette von Anwendungen und Programmiersprachen.}
+}
+
+\newglossaryentry{fail2ban}{
+	name={Fail2Ban},
+	description={Eine Intrusion Prevention Software, die durch Überwachen von Serverprotokollen auf Muster von Missbrauchsversuchen wie zu viele fehlgeschlagene Anmeldeversuche reagiert. Wenn ein solches Muster erkannt wird, konfiguriert Fail2Ban die Firewall des Hosts temporär so, dass sie IP-Adressen blockiert, von denen aus die verdächtigen Aktivitäten ausgehen, um so das System zu schützen.}
+}
+
+\newglossaryentry{ubuntu2204lts}{
+	name={Ubuntu 22.04 LTS},
+	description={Eine Version des Ubuntu-Betriebssystems, die auf Stabilität und langfristige Unterstützung ausgerichtet ist, was sie besonders für Unternehmensumgebungen geeignet macht. Es bietet regelmäßige Sicherheitsupdates für fünf Jahre, was eine zuverlässige Grundlage für Projekte gewährleistet, die eine langfristige Wartbarkeit erfordern.}
+}
+
+\newglossaryentry{firewall}{
+	name={Firewall},
+	description={Ein Sicherheitssystem, das den eingehenden und ausgehenden Netzwerkverkehr überwacht und steuert, basierend auf vordefinierten Sicherheitsregeln. Sie dient dazu, unerwünschten oder schädlichen Datenverkehr zu blockieren und somit Netzwerke und angeschlossene Geräte vor Angriffen und externen Bedrohungen zu schützen.}
+}
+
+\newglossaryentry{ssh}{
+	name={SSH},
+	description={Ein Netzwerkprotokoll, das für eine sichere Kommunikation über unsichere Netzwerke konzipiert wurde. Es ermöglicht verschlüsselten Datentransfer und Fernsteuerung von Netzwerkgeräten, was die sichere Verwaltung von Servern und anderen Netzwerkkomponenten erlaubt.}
+}
+
+\newglossaryentry{ddclient}{
+	name={DDclient},
+	description={Ein Perl-Script, das zur automatischen Aktualisierung von DNS-Einträgen genutzt wird, um dynamisch zugewiesene IP-Adressen mit einem festen Hostnamen zu verknüpfen. Dies ist besonders nützlich in Umgebungen mit dynamischer IP-Zuweisung, wie sie bei vielen Internetdienstanbietern üblich ist.}
+}
+
+\newglossaryentry{dnsentries}{
+	name={DNS-Einträge},
+	description={Informationen in einer DNS-Datenbank, die dazu dienen, Domainnamen in IP-Adressen umzuwandeln. Diese Einträge ermöglichen es Computern, Netzwerkressourcen zu identifizieren und zu lokalisieren, wodurch Benutzer einfacher auf Websites und andere im Internet gehostete Dienste zugreifen können.}
+}
+
+\newglossaryentry{logfiles}{
+	name={Log-Dateien},
+	description={Dateien, in denen Ereignisse aufgezeichnet werden, die in einem Betriebssystem oder einer Softwareanwendung stattfinden. Sie sind entscheidend für das Debugging und die Überwachung von Systemen, da sie detaillierte Informationen über den Betriebsstatus und aufgetretene Fehler enthalten.}
+}
+
+\newglossaryentry{bruteforce}{
+	name={Brute-Force-Angriffe},
+	description={Eine Methode der Cyberkriminalität, bei der automatisierte Software verwendet wird, um viele Kombinationen von Benutzernamen und Passwörtern zu erraten, um unerlaubten Zugriff auf Benutzerkonten zu erhalten. Diese Angriffe können durch starke Passwörter und zusätzliche Sicherheitsmaßnahmen wie Captchas oder Zwei-Faktor-Authentifizierung erschwert werden.}
+}
+
+\newglossaryentry{smtp}{
+	name={SMTP},
+	description={Ein Simple Mail Transfer Protocol (SMTP)-Server ist ein Netzwerkserver, der E-Mails sendet und empfängt. Er spielt eine zentrale Rolle in der elektronischen Kommunikation und wird häufig in Unternehmensumgebungen eingesetzt, um die interne und externe Kommunikation zu verwalten.}
+}
+
+\newglossaryentry{matrix}{
+	name={Matrix},
+	description={Ein offenes Protokoll für Echtzeitkommunikation, das speziell für die Anforderungen des modernen Internets entwickelt wurde. Es unterstützt verschlüsselte Chat-, VoIP- und Videokonferenzdienste und ermöglicht die Interoperabilität über verschiedene Kommunikationsplattformen hinweg.}
+}
+
+\newglossaryentry{yolo}{
+	name={YOLO},
+	description={Ein schnelles, effizientes Objekterkennungssystem, das in einem einzigen Durchlauf durch das neuronale Netzwerk sowohl die Klassifizierung als auch die Lokalisierung von Objekten in Bildern durchführt. Dieses Modell ist dafür bekannt, dass es Echtzeitverarbeitungsgeschwindigkeiten erreicht, was es besonders nützlich für Anwendungen macht, die eine sofortige Objekterkennung erfordern, wie beispielsweise in der Videoüberwachung und im autonomen Fahren.}
+}
+
+\newglossaryentry{beddetection}{
+	name={Bett-Detection},
+	description={Die automatische Erkennung der Präsenz oder Abwesenheit einer Person im Bett mithilfe von Kameraüberwachung. Dieses System ist besonders nützlich in medizinischen Überwachungsumgebungen, um sicherzustellen, dass Patienten sicher sind und sich an den zugewiesenen Orten befinden.}
+}
+
+\newglossaryentry{falldetection}{
+	name={Fall-Detection},
+	description={Technologie zur Erkennung von Stürzen, insbesondere in Umgebungen wie Krankenhäusern oder Pflegeheimen, indem ungewöhnliche Bewegungen oder Lagen der Patienten analysiert werden. Diese Systeme setzen fortschrittliche Technik ein, um Stürze sofort zu erkennen und entsprechende Alarme auszulösen, was eine schnelle Reaktion des Pflegepersonals ermöglicht.}
+}
+
+\newglossaryentry{alarm}{
+	name={Alarm},
+	description={Ein Alarmsystem, bestehend aus einem Raspberry Pi, der mit LEDs, einem kleinen Piepser für akustische Signale und einem Steckboard verbunden ist, das an die GPIO-Pins des Raspberry Pi angeschlossen ist. Dieses Setup ermöglicht es, visuelle und akustische Warnungen auszugeben, um auf bestimmte Ereignisse oder Zustände, wie z.B. erkannte Gefahren, aufmerksam zu machen.}
+}
+
+\newglossaryentry{ssl}{
+	name={SSL},
+	description={Ein Sicherheitsprotokoll, das dazu dient, die Datenübertragung zwischen einem Webbrowser und einem Server zu verschlüsseln. Es schützt sensible Informationen vor dem Abfangen durch unbefugte Dritte während der Übertragung im Internet.}
+}
+
+\newglossaryentry{sslcertificate}{
+	name={SSL-Zertifikat},
+	description={Eine digitale Datei, die die Identität einer Website bestätigt und eine verschlüsselte Verbindung zwischen einem Webserver und dem Browser des Benutzers ermöglicht. Es verwendet Public Key-Infrastruktur, um Daten zu verschlüsseln und zu verifizieren, dass die Kommunikation nur zwischen den vorgesehenen Empfängern stattfindet.}
+}
+
+\newglossaryentry{reverseproxy}{
+	name={Reverse-Proxy},
+	description={Ein Server, der als Vermittler zwischen den Endbenutzern und den Diensten, auf die sie zugreifen, fungiert, um Anfragen an die entsprechenden Server weiterzuleiten und Antworten zurückzusenden. Er wird häufig eingesetzt, um die Lastverteilung zu verbessern, die Sicherheit zu erhöhen und die Leistung von Webanwendungen zu optimieren.}
+}
