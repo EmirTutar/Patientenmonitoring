@@ -1,0 +1,23 @@
+cap_prop_frame_width: 640
+cap_prop_frame_height: 480
+cap_prop_buffersize: 1
+cap_prop_fps: 2
+confidence_threshold: 0.5
+fall_counter: 0
+fall_threshold: 1
+publish_time: 2  # 2 fps
+fall_detected_topic_name: "fall_detected" # mqqt topic name
+video_topic_name: "fall_detected_video"
+detection_class_name: "fall detected"
+message_detected: "1"
+message_not_detected: "0"
+camera_path: "/dev/video0"
+model_name: "ultralytics/yolov5"
+model_type : "custom"
+model_device : "cpu"
+custom_model_name: "model.pt"
+client_id_prefix: "python-mqtt-"
+mqtt_prtocol: "tcp"
+mqtt_connection_sucess_msg: "Connected with result code "
+result_confidence_column: "confidence"
+result_name_column: "name"

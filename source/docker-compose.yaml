@@ -7,13 +7,23 @@ services:
   ## fall detection setup
   yolov5:
     build:
-      context: ./yolov5
+      context: ./yolov5/detection
       dockerfile: Dockerfile
+    env_file: ./yolov5/.yolov5.env
     devices:
       - /dev/video0:/dev/video0  # Acces to camera
-    ports:
-      - "1883:1883"
-  
+
+  mqtt_video:
+    build:
+      context: ./yolov5/video
+      dockerfile: Dockerfile
+    env_file: ./yolov5/.yolov5.env
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+    network_mode: "host"
 
   ## matirx server setup
   synapse:
@@ -73,7 +83,7 @@ services:
     env_file: ./matrix/client/.nio.env
 
 
-
+    
   # mqtt5 eclipse-mosquitto
   mqtt5:
     build:
