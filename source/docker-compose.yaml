@@ -11,6 +11,15 @@ services:
     devices:
       - /dev/video0:/dev/video0  # Acces to camera
 
+  yolov5_video:
+    build:
+      context: ./yolov5/detection_video
+      dockerfile: Dockerfile
+    env_file: ./yolov5/.yolov5.env
+    volumes:
+      - ./yolov5/detection/model.pt:/usr/src/app/model.pt
+
+    
   mqtt_video:
     build:
       context: ./yolov5/video
