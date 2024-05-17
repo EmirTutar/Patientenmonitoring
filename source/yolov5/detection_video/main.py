@@ -101,14 +101,15 @@ while cap.isOpened():
         if fall_counter >= fall_threshold:
              message = message_detected
 
-        client.publish(fall_detected_topic_name, payload=message, qos=1)
+        client.publish(fall_detected_topic_name, payload=message, qos=0)
         
          
 
         img_str = cv2.imencode('.jpg', cv2.cvtColor(np.squeeze(results.render()), cv2.COLOR_RGB2BGR))[1].tobytes() # publish current detection as image
         client.publish(video_topic_name, payload=img_str, qos=1)
+        time.sleep(1)
 
-        results.print()
+        # results.print()
     else:
         # Break after Videostream closes
         break
