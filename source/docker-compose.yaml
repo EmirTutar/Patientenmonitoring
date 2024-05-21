@@ -73,7 +73,7 @@ services:
   email_bridge:
     image: jojii/matrix_email_bridge
     volumes:
-      - ./matrix/bridge:/app/data
+      - ./matrix/bridge/data:/app/data
 
   ## matirx client setup
   matrix_client:
