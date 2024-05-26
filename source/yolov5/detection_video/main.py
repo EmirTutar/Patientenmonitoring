@@ -28,6 +28,7 @@ fall_threshold = config['fall_threshold']
 fall_detected_topic_name = config['fall_detected_topic_name']
 video_topic_name = config["video_topic_name"]
 detection_class_name =  config['detection_class_name']
+message_maybe_detected = config["message_maybe_detected"]
 message_detected = config["message_detected"]
 message_not_detected = config["message_not_detected"]
 camera_path=  config["camera_path"]
@@ -95,6 +96,7 @@ while cap.isOpened():
 
         if made_fall_detection:
             fall_counter += 1
+            message = message_maybe_detected
         else:
             fall_counter = 0
         
@@ -108,8 +110,7 @@ while cap.isOpened():
         img_str = cv2.imencode('.jpg', cv2.cvtColor(np.squeeze(results.render()), cv2.COLOR_RGB2BGR))[1].tobytes() # publish current detection as image
         client.publish(video_topic_name, payload=img_str, qos=1)
         time.sleep(1)
-
-        # results.print()
+        results.print()
     else:
         # Break after Videostream closes
         break

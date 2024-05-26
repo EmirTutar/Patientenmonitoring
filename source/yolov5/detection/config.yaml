@@ -9,6 +9,7 @@ publish_time: 2  # 2 fps
 fall_detected_topic_name: "fall_detected" # mqqt topic name
 video_topic_name: "fall_detected_video"
 detection_class_name: "fall detected"
+message_maybe_detected: "2"
 message_detected: "1"
 message_not_detected: "0"
 camera_path: "/dev/video0"
