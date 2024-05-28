@@ -1,0 +1,15 @@
+\selectlanguage{german}
+\subsection{Soll - Anforderungen}
+
+\subsubsection{Bett Detektion}
+Es soll eine Komponente im System geben, welche sich darum kümmert, zu erkennen, ob eine Person in einem Bett liegt. Es soll aber nicht jede Abwesenheit sofort zu einem \nameref{subsec:alarm} führen, sondern nur, wenn über einen Zeitraum von 10 Minuten, das Bett leer bleibt, sollte ein Pfleger benachrichtigt werden, der dann nach dem Patienten schaut. Aufgrund der Zeitspanne von 10 Minuten, die das Bett leer bleiben muss, um einen \nameref{subsec:alarm} auszulösen, ist es auch in Ordnung, wenn die Detektion etwas länger dauert. Es soll angestrebt werden, innerhalb von 30 Sekunden nach Verlassen des Betts zu erkennen das dieses leer ist. 
+
+\subsubsection{Alarm (Ton und Licht)}
+Eine wesentliche Anforderung des Projekts ist die Implementierung eines Alarmtons und eines Lichtsignals. Diese Funktionalität wird durch den Anschluss eines Lautsprechers und einer LED an den \nameref{subsec:pi} realisiert. Die Verbindung erfolgt über ein Steckbrett, auf dem auch die erforderlichen Widerstände und Transistoren montiert sind, um die Signale entsprechend zu steuern und zu verstärken.
+
+Die LED dient dabei als visuelles Alarmzeichen, während der Lautsprecher akustische Warnungen ausgibt. Diese Komponenten werden über GPIO-Pins des \nameref{subsec:pi} gesteuert, was eine direkte Signalübertragung von der Steuerungssoftware zu den Warnsystemen ermöglicht.
+
+\subsubsection{Firewall}
+Eine \nameref{subsec:firewall} ist als zusätzliche Sicherheitsebene im Projekt vorgesehen, um den Schutz des \nameref{subsec:pi}-Systems zu verstärken. Obwohl viele Heimrouter bereits mit integrierten \nameref{subsec:firewall} ausgestattet sind, ist die Implementierung einer dedizierten \nameref{subsec:firewall} auf dem \nameref{subsec:pi} selbst eine wichtige Soll-Anforderung. Diese Maßnahme dient dazu, die Netzwerksicherheit weiter zu erhöhen und Anwendungsspezifische Sicherheitsrichtlinien durchzusetzen.
+
+Die \nameref{subsec:firewall} auf dem \nameref{subsec:pi} wird konfiguriert, um eingehende und ausgehende Verbindungen genau zu überwachen und zu kontrollieren. Sie filtert den Datenverkehr basierend auf vordefinierten Sicherheitsregeln und hilft dabei, unerwünschten Zugriff sowie mögliche Bedrohungen abzuwehren. Diese Schutzschicht ist besonders kritisch, wenn der \nameref{subsec:pi} in einem öffentlich zugänglichen Netzwerk betrieben wird oder sensible Daten verarbeitet.
