@@ -3,6 +3,8 @@ networks:
     name: mqtt5_network
 
 services:
+
+  ## fall detection setup
   yolov5:
     build:
       context: ./yolov5/detection
@@ -31,6 +33,65 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
     network_mode: "host"
+
+  ## matirx server setup
+  synapse:
+      image: "matrixdotorg/synapse:v1.105.0"
+      container_name: "matrix_synapse"
+      volumes:
+          - "./matrix/server/data:/data"
+      depends_on:
+          - postgres
+      environment:
+          VIRTUAL_PORT: 8008
+          SYNAPSE_SERVER_NAME: "sysadmin-matrix"
+          SYNAPSE_REPORT_STATS: "no" 
+  postgres:
+      image: postgres:16.2-alpine3.19
+      container_name: postgres_container
+      env_file: ./matrix/server/.postgres.env
+      environment:
+      - POSTGRES_INITDB_ARGS=-E UTF8 --lc-collate=C --lc-ctype=C
+      ports:
+          - 5432:5432
+      volumes:
+      - ./matrix/server/database:/var/lib/postgresql/data
+  nginx:
+      image: nginx:stable-alpine3.17
+      container_name: nginx_container
+      ports:
+          - 80:80
+          - 443:443
+          - 8448:8448
+      volumes:
+        - ./matrix/server/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro
+        - ./matrix/server/certbot/www:/var/www/certbot/:ro
+        - ./matrix/server/certbot/conf/:/etc/nginx/ssl/:ro
+  certbot:
+      image: certbot/certbot:v2.10.0
+      depends_on:
+      - nginx
+      command: >-
+             certonly --reinstall --webroot --webroot-path=/var/www/certbot
+             --email ${EMAIL} --agree-tos --no-eff-email
+             -d ${DOMAIN}
+      volumes:
+      - ./matrix/server/certbot/www/:/var/www/certbot/:rw
+      - ./matrix/server/certbot/conf/:/etc/letsencrypt/:rw
+
+  email_bridge:
+    image: jojii/matrix_email_bridge
+    volumes:
+      - ./matrix/bridge/data:/app/data
+
+  ## matirx client setup
+  matrix_client:
+    build:
+      context: ./matrix/bridge
+      dockerfile: Dockerfile
+    env_file: ./matrix/client/.nio.env
+
+
     
   # mqtt5 eclipse-mosquitto
   mqtt5:
