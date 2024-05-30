@@ -80,14 +80,16 @@ services:
       - ./matrix/server/certbot/conf/:/etc/letsencrypt/:rw
 
   email_bridge:
-    image: jojii/matrix_email_bridge
+    build:
+      context: ./matrix/bridge
+      dockerfile: Dockerfile
     volumes:
       - ./matrix/bridge/data:/app/data
 
   ## matirx client setup
   matrix_client:
     build:
-      context: ./matrix/bridge
+      context: ./matrix/client
       dockerfile: Dockerfile
     env_file: ./matrix/client/.nio.env
 
