@@ -23,14 +23,6 @@ mqtt_connection_sucess_msg = config["mqtt_connection_sucess_msg"]
 video_topic_name = config["video_topic_name"]
 
 def on_message(client, userdata, message):
-
-        nparr = np.frombuffer(message.payload, np.uint8)
-        frame = cv2.imdecode(nparr,  cv2.IMREAD_COLOR)
-
-        cv2.imshow('recv', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            return
-
         
         nparr = np.frombuffer(message.payload, np.uint8)
         frame = cv2.imdecode(nparr,  cv2.IMREAD_COLOR)
