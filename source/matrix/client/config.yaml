@@ -1,0 +1,7 @@
+client_id_prefix: "python-mqtt-"
+mqtt_protocol: "tcp"
+mqtt_connection_sucess_msg: "Connected with result code "
+fall_detected_topic_name: "fall_detected" 
+fall_detected_msg: "<h1><b>Alarm!</b></h1>  <p>Ein Patient ist hingeflogen<p>"
+matrix_msg_success: "Message sent to Matrix room"
+matrix_msg_failed: "Error sending message to Matrix: "
