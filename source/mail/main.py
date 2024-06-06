@@ -6,13 +6,14 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Email configuration
-smtp_server = "mail.atomicpisysadmin.dynv6.net"
+smtp_server = "atomicpisysadmin.dynv6.net"
 smtp_port = 587 
 smtp_username = "patmonsys@atomicpisysadmin.dynv6.net"
 smtp_password = "PatientMonitoringSystem"
 from_email = "patmonsys@atomicpisysadmin.dynv6.net"
 to_email = "patmonsys@atomicpisysadmin.dynv6.net"
 subject = "Fall Detected Alert"
+
 
 state = 0
 # Callback function when connection is established
@@ -44,14 +45,18 @@ def send_email(message):
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()  # Secure the connection
             server.login(smtp_username, smtp_password)
+            print("Logged in successfully")
+
+            # Send the email
             server.sendmail(from_email, to_email, msg.as_string())
-        print("Email sent successfully")
+            print("Email sent successfully")
+
     except Exception as e:
         print("Failed to send email: " + str(e))
 
 # MQTT configuration
-mqtt_broker_address =  "atomicpisysadmin.dynv6.net" # Replace with your MQTT broker's address
-mqtt_port = 587
+mqtt_broker_address =  "atomicpisysadmin.dynv6.net"
+mqtt_port = 1883
 mqtt_username = "mosquitouser"
 mqtt_password = "safepassword123"
 fall_detected_topic_name = "fall_detected"
@@ -62,7 +67,6 @@ client = mqtt.Client(client_id=f'python-mqtt-{random.randint(0, 1000)}', protoco
 
 client.on_connect = on_connect
 client.on_message = on_message
-
 client.username_pw_set(mqtt_username, mqtt_password)
 
 client.connect(mqtt_broker_address, mqtt_port)
