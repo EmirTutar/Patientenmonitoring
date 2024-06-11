@@ -2,18 +2,37 @@
 \subsection{Mailcow}
 
 \subsubsection{Einführung in Mailcow}
+Mailcow ist eine Open-Source-Mailserver-Suite, die eine umfassende E-Mail-Lösung bietet. Sie kombiniert 
+verschiedene Dienste wie Postfix für den Mail-Transport, Dovecot für die Speicherung und den Zugriff auf 
+E-Mails sowie SOGo als Webmail-Oberfläche. Mailcow bietet eine benutzerfreundliche Weboberfläche zur 
+Verwaltung von Domains, Benutzern und E-Mail-Quotas. Aufgrund der Integration von modernen Sicherheitsmechanismen 
+wie DMARC, DKIM und SPF gewährleistet Mailcow ein hohes Maß an Sicherheit für die E-Mail-Kommunikation.
 
 \subsubsection{IMAP / SMTP}
+IMAP (Internet Message Access Protocol) und SMTP (Simple Mail Transfer Protocol) sind grundlegende Protokolle 
+für den E-Mail-Verkehr. IMAP wird verwendet, um E-Mails vom Server zu lesen und zu verwalten, während SMTP zum 
+Versenden von E-Mails dient. In Mailcow übernimmt Dovecot die Rolle des IMAP-Servers und Postfix die des 
+SMTP-Servers. 
 
 \subsubsection{DNS MX-Record}
+Der DNS MX-Record (Mail Exchanger Record) ist ein entscheidender Teil der E-Mail-Infrastruktur. Er gibt an, 
+welche Mailserver für den Empfang von E-Mails für eine bestimmte Domain verantwortlich sind. Bei der Konfiguration 
+von Mailcow muss der MX-Record der Domain auf den Mailcow-Server zeigen, um sicherzustellen, dass eingehende 
+E-Mails korrekt zugestellt werden. Die richtige Konfiguration des MX-Records ist notwendig für die Zustellung 
+von E-Mails.
 
 \subsubsection{Installation und Konfiguration}
 
 \subsubsection{Sicherheit: DMAC}
 
 \subsubsection{Sicherheit: DKIM}
+DKIM (DomainKeys Identified Mail) ist ein Authentifizierungsprotokoll, das E-Mails mit einer digitalen 
+Signatur versieht. Diese Signatur wird von einem öffentlichen Schlüssel überprüft, der im DNS der sendenden
+Domain veröffentlicht ist. DKIM hilft sicherzustellen, dass E-Mails nicht verändert wurden und wirklich von
+der angegebenen Domain stammen. In Mailcow kann DKIM leicht über die Weboberfläche aktiviert und verwaltet
+werden, um die Authentizität der ausgehenden E-Mails zu gewährleisten.
 
 \subsubsection{Sicherheit: SPF}
 
-\subsection{Email-Client}
+\subsubsection{E-Mail-Client}
 
