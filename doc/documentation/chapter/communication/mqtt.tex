@@ -1,10 +1,35 @@
 \selectlanguage{german}
-\clearpage
 
 \subsection{Einführung in MQTT}
+MQTT (Message Queuing Telemetry Transport) ist ein leichtgewichtiges Protokoll, das speziell für die 
+Kommunikation zwischen Geräten mit begrenzten Ressourcen entwickelt wurde. Es zeichnet sich durch seine 
+Effizienz und geringe Bandbreitennutzung aus, was es ideal für den Einsatz in IoT (Internet of Things) und 
+anderen Umgebungen mit eingeschränkten Netzwerkressourcen macht \cite{MQTTWikiedia}.
 
 \subsection{MQTT - Architektur}
+MQTT arbeitet nach einem Publisher/Subscriber-Modell, bei dem Clients Nachrichten zu bestimmten
+Themen ("Topics") veröffentlichen oder abonnieren können. Ein zentraler Broker verwaltet diese 
+Kommunikation, indem er die Nachrichten vom Publisher an die abonnierten Subscriber weiterleitet. 
+Es muss also gewährleistet sein das dieser Broker funktioniert und erreichbar ist, denn ohne ihn ist keine
+Kommunikation zwischen Subscriber und Publisher möglich. 
+
+\subsection{Sicherheitsaspekt}
+Authentifizierung stellt sicher, dass nur autorisierte Geräte Zugang zum Broker erhalten. Es wurde entschieden, 
+dass unser Message-Broker nur Kommunikation mit authentifizierten Publishern und Subscribern erlaubt. 
+Nicht authentifizierte Clients werden abgelehnt.
+Die Verschlüsselung der Kommunikation zwischen Clients und dem Broker erfolgt über TLS (Transport Layer Security).
+Dies schützt die Daten vor Abhören und Manipulation durch Dritte.
 
 \subsection{Setup des Message-Brokers}
+Um über das MQTT - Protokoll zu kommunizieren, ist der erste Schritt die Installation und Konfiguration 
+eines MQTT-Brokers. Bekannte MQTT-Broker sind Mosquitto und HiveMQ. Wir haben uns für den Eclipse - 
+Mosquitto - Docker - Container entschieden \cite{eclipse_mosquitto_docker}. Wir konfigurieren den Message Broker
+nun über die mosquitto.conf, das nur authentifizierte Clients mit unserem Broker kommunizieren dürfen.
+Es wird auch einen Account erstellt, mit dessen Zugangsdaten Clients sich am Broker authentifizieren müssen.
 
 \subsection{Integration mit anderen Komponenten}
+Die Integration mit anderen Komponenten unseres Systems ist einfach, denn da MQTT ein weitverbreitetes Protokoll
+ist, gibt es in vielen Sprachen Implementationen eines MQTT - Clients, über den Nachrichten an den Message-Broker
+und somit andere Clients gesendet werden kann. Es gilt also nur noch festzulegen wie unsere Nachrichten aussehen. 
+Da die Nachrichtenformate aber den speziellen Bedingungen und Anforderungen der Kommunikationspartner unterliegen
+legen wir uns nicht darauf fest das dieselben Nachrichten-Inhalte im ganzen System auch gleich aussehen.
