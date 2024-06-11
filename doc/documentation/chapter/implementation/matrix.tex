@@ -74,3 +74,7 @@ Um die Unterstützung der \nameref{subsec:ssl}-Verschlüsselung auf dem Matrixse
 
 \subsubsection{Matrix Bridge}
 Eine Matrix-Bridge wird verwendet, um den E-Mail-Server mit \nameref{subsec:matrix} zu verbinden \cite{jojii_jojiiofficialmatrix-emailbridge_2024}. Bridges in Matrix erleichtern die Verbindung zu anderen Plattformen und unterstützen die Interoperabilität, was die Vernetzung von Matrix über verschiedene digitale Plattformen hinweg ermöglicht \cite{noauthor_bridges_nodate}. Die Bridge gestattet es, E-Mails über Matrix zu senden und E-Mail-Inhalte in Matrix verfügbar zu machen. Alarme werden mit der Bridge, ausschließlich über E-Mail ausgelöst, die automatisch auch nach Matrix versendet wird.
+
+
+\subsubsection{Matrix Client}
+Eine eigenständige Matrix-Clientanwendung wurde als zusätzliche Sicherheitsmaßnahme entwickelt, um im Falle eines Ausfalls des E-Mail-Servers Nachrichten zu versenden. Sie ist direkt mit der Matrix-Bridge integriert und wurde unter Einsatz der Nio-Bibliothek für die Matrix-API entwickelt \cite{nio}. Diese Anwendung sendet automatisch eine Benachrichtigung, sobald über MQTT gemeldet wird, dass eine Person gestürzt ist.
