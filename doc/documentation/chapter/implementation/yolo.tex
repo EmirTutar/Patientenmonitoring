@@ -39,7 +39,6 @@ Die Anbindung an das YOLOv5-Modell erfolgt über PyTorch, ein Open-Source-Framew
 
 Das Modell läuft in einem Docker-\nameref{subsec:container}, der kontinuierlich über MQTT einen boolean-Wert veröffentlicht, um anzuzeigen, ob ein \nameref{subsec:alarm} aufgetreten ist. Zur Einbindung der Raspberry Pi Kamera verwendet der \nameref{subsec:container} auch OpenCV, eine Open-Source-Bibliothek für Computer Vision \cite{OpenCV}. Mithilfe von OpenCV wird auch eine Funktion entwickelt, die über \nameref{subsec:mqtt} ein Bild mit allen Detektionen versendet. Diese Bilder werden später mithilfe eines weiteren \nameref{subsec:docker} Containers auf einem lokalen Rechner angezeigt.
 
-\subsubsection{Evaluation}
-Das Modell soll dem Model-Entwickler zufolge eine Genauigkeit von 85 bis 90\% bei Tageslicht haben. Es hat jedoch Schwierigkeiten mit der Detektion von vielen Personen auf einem Bild, was zu falschen Erkennungen führen kann. Für diesen Anwendungsfall, d.h. die Überwachung von Patienten, ist dies jedoch kein Problem, da es in den Bildern normalerweise nur einzelne Patienten gibt. 
+
 
 % Zitat von wo das 85% bis 90% genauigkeit ist. Quelle fehlt, noch ergänzen.

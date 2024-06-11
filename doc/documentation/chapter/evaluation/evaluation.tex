@@ -1,0 +1,11 @@
+\section{Evaluation}
+
+\subsubsection{Yolov5}
+Das Modell soll dem Model-Entwickler zufolge eine Genauigkeit von 85 bis 90\% bei Tageslicht haben. Es hat jedoch Schwierigkeiten mit der Detektion von vielen Personen auf einem Bild, was zu falschen Erkennungen führen kann. Für diesen Anwendungsfall, d.h. die Überwachung von Patienten, ist dies jedoch kein Problem, da es in den Bildern normalerweise nur einzelne Patienten gibt \cite{kumar_uttej2001image-based-human-fall-detection_2024}. 
+
+\subsection{Testumgebung}
+Das Modell wurde von uns in verschiedenen Sturzsituationen getestet. Wie in unserem Testvideo zu sehen ist \cite{yolovideo}, funktioniert das Modell weitgehend wie vom Autor beschrieben. Allerdings treten gelegentlich Fehlermeldungen auf, die im Video ebenfalls dokumentiert sind. Diese Fehler sind vermutlich auf die Verwendung des kleineren YOLOv5s-Modells zurückzuführen.
+
+\subsection{Testergebnisse}
+
+Insgesamt hat uns das Modell mit seinen Klassifikationen überzeugt. Es ermöglicht uns, mit 1-2 FPS auf einem Raspberry Pi 4 Inferenz durchzuführen. Dadurch sparen wir die Kosten für einen teuren Server und können das Projekt dynamisch mit den Kameras skalieren.
