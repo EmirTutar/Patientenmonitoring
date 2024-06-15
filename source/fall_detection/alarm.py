@@ -13,7 +13,7 @@ button = Button(24, pull_up=True)  # Pull-up-Widerstand ist standardmäßig akti
 state = 0  # Zustandsvariable
 button_pressed = False
 
-broker_address = "atomicpisysadmin.dynv6.net"  # Replace with your MQTT broker's address
+broker_address = "atomicpisysadmin.dynv6.net"  
 port = 1883
 username = "mosquitouser"
 password = "safepassword123"

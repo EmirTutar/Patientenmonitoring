@@ -5,7 +5,7 @@ import argparse
 import threading
 
 # MQTT Broker Konfiguration
-broker_address = "atomicpisysadmin.dynv6.net"  # Replace with your MQTT broker's address
+broker_address = "atomicpisysadmin.dynv6.net" 
 port = 1883
 username = "mosquitouser"
 password = "safepassword123"
