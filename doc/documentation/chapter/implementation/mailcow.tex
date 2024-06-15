@@ -21,18 +21,43 @@ von Mailcow muss der MX-Record der Domain auf den Mailcow-Server zeigen, um sich
 E-Mails korrekt zugestellt werden. Die richtige Konfiguration des MX-Records ist notwendig für die Zustellung 
 von E-Mails.
 
-\subsubsection{Installation und Konfiguration}
-
-\subsubsection{Sicherheit: DMAC}
-
 \subsubsection{Sicherheit: DKIM}
 DKIM (DomainKeys Identified Mail) ist ein Authentifizierungsprotokoll, das E-Mails mit einer digitalen 
 Signatur versieht. Diese Signatur wird von einem öffentlichen Schlüssel überprüft, der im DNS der sendenden
 Domain veröffentlicht ist. DKIM hilft sicherzustellen, dass E-Mails nicht verändert wurden und wirklich von
-der angegebenen Domain stammen. In Mailcow kann DKIM leicht über die Weboberfläche aktiviert und verwaltet
-werden, um die Authentizität der ausgehenden E-Mails zu gewährleisten.
+der angegebenen Domain stammen. In Mailcow kann ein DKIM-Schlüssel-Paar leicht über die Weboberfläche erstellt
+werden, um die Authentizität der ausgehenden E-Mails zu gewährleisten. Den öffentlichen Schlüssel muss dann noch 
+in einem DNS Record eingetragen werden.
 
 \subsubsection{Sicherheit: SPF}
+SPF (Sender Policy Framework) Mail Records sind ein Mechanismus zur Verhinderung von E-Mail-Spoofing. Sie 
+ermöglichen es einem Domaininhaber, festzulegen, welche Mail-Server berechtigt sind, E-Mails im Namen ihrer 
+Domain zu senden. Dies wird durch die Veröffentlichung eines SPF-Eintrags in den DNS (Domain Name System) der 
+Domain erreicht, der eine Liste autorisierter IP-Adressen enthält. E-Mail-Empfangsserver überprüfen den 
+SPF-Eintrag der absendenden Domain und verwerfen oder markieren E-Mails als Spam, wenn sie von einem nicht 
+autorisierten Server gesendet wurden. Dadurch wird die Wahrscheinlichkeit reduziert, dass schädliche oder 
+gefälschte E-Mails erfolgreich zugestellt werden. 
+
+\subsubsection{Sicherheit: DMARC}
+DMARC (Domain-based Message Authentication, Reporting, and Conformance) Mail Records bauen auf den Mechanismen 
+von SPF und DKIM auf, um eine umfassendere E-Mail-Authentifizierung zu bieten. DMARC ermöglicht es, 
+Richtlinien zu definieren, wie E-Mail-Empfangsserver mit Nachrichten umgehen sollen, die SPF- oder DKIM-Prüfungen
+nicht bestehen. Ein DMARC-Eintrag im DNS der Domain legt fest, ob solche E-Mails abgewiesen, in Quarantäne gestellt
+oder zugestellt werden sollen, und bietet zudem eine Reporting-Funktion. Dadurch können Domaininhaber Berichte 
+über gefälschte E-Mails erhalten und ihre E-Mail-Sicherheitsrichtlinien kontinuierlich verbessern. DMARC hilft 
+somit, die E-Mail-Sicherheit zu stärken und Phishing-Angriffe effektiver zu bekämpfen.
+
+\subsubsection{Installation und Konfiguration}
+Zu Konfiguration von Mailcow kann die Dokumentation von Mailcow - Dockerized benutzt werden
+\cite{mailcowDockerizedDNS}. Dieses Projekt bietet fertige Docker - Container an, die nur noch über eine 
+Konfigurationsdatei angepasst werden müssen. Um dies zu befolgen wir einfach die Anleitung des Projekts. Es 
+ist wichtig zu wissen, dass die Einstellung des DNS Servers nicht automatisch geschieht, sondern manuell erledigt
+werden muss. Glücklicherweise hilft auch hier die Dokumentation von Mailcow - Dockerized, denn es gibt ein Kapitel,
+dass das DNS - Setup inklusive SPF, DKIM und DMARC erklärt. Es wird auch auf Websiten verwiesen die diese 
+Sicherheitsmechanismen testen können.
 
 \subsubsection{E-Mail-Client}
-
+Um Mails zu versenden braucht es einen Mail Client, in dem man normalerweise eine E-Mail schreibt, die dann 
+an den Email-Server des Accounts der die E-Mail schreibt gesendet wird. Der Mailserver kann dann die E-Mail mit 
+seinem privaten DKIM - Schlüssel signieren und die Mail an den E-Mail-Server des Empfängers weiterleiten. Da das automatische Versenden vom Mails ein häufiges Problem ist, gibt es auch hierfür fertige Lösungen. Wir benutzen da python
+ Modul ''emails''.
