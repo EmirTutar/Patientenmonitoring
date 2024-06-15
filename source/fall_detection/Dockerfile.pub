@@ -1,18 +1,13 @@
-# Basisimage
-FROM python:3.10-slim
+FROM ubuntu:22.04
 
-# Arbeitsverzeichnis im Container erstellen
-WORKDIR /app
+RUN apt-get update && \
+    apt-get install -y python3-pip python3-rpi.gpio
 
-# Kopieren Sie die requirements.txt und installieren Sie die Abhängigkeiten
+WORKDIR /usr/src/app
+
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-# Kopieren Sie das Python-Skript in das Arbeitsverzeichnis
 COPY pub.py .
 
-# Exponieren Sie den MQTT-Port (optional, falls der Container auch als Publisher verwendet wird)
-EXPOSE 1883
-
-# Standardkommando beim Starten des Containers
-CMD ["python", "pub.py"]
+CMD ["python3", "pub.py", "0"]

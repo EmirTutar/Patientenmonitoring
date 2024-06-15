@@ -141,6 +141,7 @@ services:
     command: ["python3", "-u", "subscriber.py"]
     restart: unless-stopped
 
+
   fall_detection_pub:
     build:
       context: ./fall_detection
@@ -151,6 +152,8 @@ services:
     restart: unless-stopped
     devices:
       - /dev/gpiomem:/dev/gpiomem
+    privileged: true
+    command: ["tail", "-f", "/dev/null"]
 
   fall_detection_alarm:
     build:
@@ -162,3 +165,6 @@ services:
     restart: unless-stopped
     devices:
       - /dev/gpiomem:/dev/gpiomem
+    privileged: true
+    command: ["tail", "-f", "/dev/null"]
+
