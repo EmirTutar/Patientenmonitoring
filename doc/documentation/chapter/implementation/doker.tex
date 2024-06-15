@@ -4,17 +4,124 @@
 
 \subsubsection{Fail2Ban}
 
+Im Rahmen dieses Projekts wird \nameref{subsec:f2b} so konfiguriert, dass bei mehr als fünf fehlgeschlagenen SSH-Anmeldeversuchen die IP-Adresse des Geräts, von dem aus die Anmeldeversuche unternommen werden, dauerhaft gesperrt wird. Diese Sperre bleibt bestehen, bis der Administrator die IP-Adresse manuell wieder entsperrt. Diese strenge Maßnahme dient dazu, die Zugriffskontrolle auf unseren Raspberry Pi zu verstärken und potenzielle Sicherheitsrisiken zu minimieren.
+
+Die Konfigurationsdatei für Fail2Ban (\texttt{jail.local}) wird wie folgt angepasst:
+
+\begin{verbatim}
+	[sshd]
+	enabled  = true
+	port     = ssh
+	logpath  = /var/log/auth.log
+	maxretry = 5
+	bantime  = -1
+\end{verbatim}
+
+Diese Einstellungen sorgen dafür, dass Fail2Ban das SSH-Protokoll überwacht und nach fünf fehlgeschlagenen Versuchen die IP-Adresse dauerhaft sperrt. Der Parameter \texttt{bantime = -1} stellt sicher, dass die Sperre unendlich lang andauert, bis der Administrator eingreift.
+
+Durch die Implementierung von Fail2Ban wird die Sicherheit des Systems erheblich verbessert, da automatisierte Brute-Force-Angriffe effektiv abgewehrt werden können.
+
 \subsubsection{DDclient}
 
-\subsubsection{UFW - Uncomplicadet Firewall}
+DDclient ist ein Perl-basiertes Programm, das dynamische DNS-Dienste (DDNS) unterstützt. Es wird verwendet, um die IP-Adresse eines Systems bei einem DNS-Dienstanbieter zu aktualisieren, wenn sich die IP-Adresse des Systems ändert. Im Rahmen dieses Projekts wird DDclient auf dem Atomic Pi verwendet, der den MQTT-Dienst betreibt. Dadurch wird sichergestellt, dass das Alarmsystem immer unter einem festen Domainnamen erreichbar ist, auch wenn sich die öffentliche IP-Adresse des Netzwerks ändert.Dies ist besonders wichtig für die ständige Kommunikation und Überwachung des Alarmsystems.
 
-\subsubsection{Docker Compose}
+
+\subsubsection{UFW - Uncomplicated Firewall}
+
+Zur Erhöhung der Sicherheit auf dem Raspberry Pi wird UFW (Uncomplicated Firewall) installiert und konfiguriert. Die folgenden Schritte richten UFW ein und stellen sicher, dass notwendige Dienste erreichbar sind, während andere Verbindungen blockiert werden.
+
+\begin{enumerate}
+	\item \textbf{Installation von UFW}
+	\begin{verbatim}
+		sudo apt-get update
+		sudo apt-get install ufw
+	\end{verbatim}
+	
+	\item \textbf{Setzen der Standardregeln}
+	\begin{verbatim}
+		sudo ufw default deny incoming
+		sudo ufw default allow outgoing
+	\end{verbatim}
+	Die Regel \texttt{deny incoming} bedeutet, dass jeglicher eingehender Netzwerkverkehr standardmäßig blockiert wird, es sei denn, es gibt explizite Regeln, die bestimmte Arten von eingehendem Verkehr erlauben. Diese Regel stellt eine grundlegende Sicherheitsmaßnahme dar, um ungewollten oder schädlichen Datenverkehr abzuwehren.\\
+	
+	\item \textbf{Erlauben von SSH-Verbindungen}
+	\begin{verbatim}
+		sudo ufw allow ssh
+	\end{verbatim}
+	
+	\item \textbf{Erlauben von HTTP und HTTPS}
+	\begin{verbatim}
+		sudo ufw allow http
+		sudo ufw allow https
+	\end{verbatim}
+	
+	\item \textbf{Erlauben von Docker-spezifischen Ports}
+	\begin{verbatim}
+		sudo ufw allow 2375/tcp
+		sudo ufw allow 2376/tcp
+		sudo ufw allow 2377/tcp
+		sudo ufw allow 7946/tcp
+		sudo ufw allow 7946/udp
+		sudo ufw allow 4789/udp
+	\end{verbatim}
+	
+	\item \textbf{Erlauben von MQTT-Ports}
+	\begin{verbatim}
+		sudo ufw allow 1883/tcp
+		sudo ufw allow 8883/tcp
+		sudo ufw allow 8080/tcp
+		sudo ufw allow 9001/tcp
+	\end{verbatim}
+	
+	\item \textbf{Erlauben von Netzwerkmanagement-Ports}
+	\begin{verbatim}
+		sudo ufw allow 53/tcp
+		sudo ufw allow 53/udp
+		sudo ufw allow 67/udp
+		sudo ufw allow 68/udp
+	\end{verbatim}
+	
+	\item \textbf{Aktivierung von UFW}
+	\begin{verbatim}
+		sudo ufw enable
+	\end{verbatim}
+	
+	\item \textbf{Überprüfen des UFW-Status}
+	\begin{verbatim}
+		sudo ufw status verbose
+	\end{verbatim}
+\end{enumerate}
+
+Die Konfiguration von UFW stellt sicher, dass nur autorisierte Verbindungen zu den notwendigen Diensten auf dem Raspberry Pi zugelassen werden, wodurch die Sicherheit des Systems erhöht wird.
 
 
 \subsection{Nutzung von Docker}
 
-\subsubsection{Docker Compose}
+\subsubsection{Docker für Fall-Detection-Alarm}
 
-\subsubsection{Docker Volumes}
+\textbf{Beschreibung der Zustände}\\
 
-\subsubsection{Docker Evironmentvariables}
+Das System verwendet vier Zustände, die jeweils unterschiedliche Ereignisse darstellen:
+
+\begin{itemize}
+	\item \textbf{0: Everything okay} - Das System zeigt an, dass alles in Ordnung ist.
+	\item \textbf{1: Fall detected} - Das System zeigt an, dass ein Sturz erkannt wird.
+	\item \textbf{2: Fall maybe detected} - Das System zeigt an, dass möglicherweise ein Sturz erkannt wird.
+	\item \textbf{3: Exit} - Beendet das System und schaltet alle Anzeigen ab.
+\end{itemize}
+
+\textbf{Erstellen der Dockerfiles}\\
+
+Für jedes Skript (\texttt{pub.py} und \texttt{alarm.py}) wird ein eigenes Dockerfile erstellt, das die notwendigen Abhängigkeiten installiert und die Arbeitsumgebung konfiguriert. \\
+
+\textbf{Anpassen der Docker-Compose-Datei}\\
+
+Die \texttt{docker-compose.yml}-Datei wird angepasst, um die Container ohne ein festes \texttt{CMD} zu starten, sodass eine interaktive Shell im Container geöffnet und die Skripte manuell ausgeführt werden können. \\
+
+\textbf{Manuelles Starten der Skripte}\\
+
+Nach dem Starten der Container können die Skripte manuell in einer interaktiven Shell ausgeführt werden. Dies ermöglicht eine flexible Verwaltung und Kontrolle des Alarm-Skriptes.
+
+\subsubsection{Weitere Docker setups}
+
+\subsubsection{Weitere Docker setups }
