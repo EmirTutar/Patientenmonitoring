@@ -50,4 +50,4 @@ python3 alarm.py
 
 **Zustände ändern:**
 
-Während das Skript pub.py läuft, können Sie die Zustände ändern, indem Sie die entsprechenden Zahlen (0, 1, 2 oder 3) eingeben und sehr schnell dannach auf enter drücken. Der Zustand wird an das System gesendet und die Anzeigen werden entsprechend aktualisiert.
+Während das Skript pub.py läuft, können Sie die Zustände ändern, indem Sie die entsprechenden Zahlen (0, 1, 2 oder 3) eingeben und sehr schnell dannach auf enter drücken. Der Zustand wird an das System gesendet und die Anzeigen werden entsprechend aktualisiert. Diese möglichkeit besteht aktuell nur für Testzwecke.
