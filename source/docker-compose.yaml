@@ -141,5 +141,24 @@ services:
     command: ["python3", "-u", "subscriber.py"]
     restart: unless-stopped
 
+  fall_detection_pub:
+    build:
+      context: ./fall_detection
+      dockerfile: Dockerfile.pub
+    container_name: fall_detection_pub
+    networks:
+      - mqtt5_network
+    restart: unless-stopped
+    devices:
+      - /dev/gpiomem:/dev/gpiomem
 
-
+  fall_detection_alarm:
+    build:
+      context: ./fall_detection
+      dockerfile: Dockerfile.alarm
+    container_name: fall_detection_alarm
+    networks:
+      - mqtt5_network
+    restart: unless-stopped
+    devices:
+      - /dev/gpiomem:/dev/gpiomem

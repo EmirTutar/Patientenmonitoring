@@ -1,0 +1,18 @@
+# Basisimage
+FROM python:3.10-slim
+
+# Arbeitsverzeichnis im Container erstellen
+WORKDIR /app
+
+# Kopieren Sie die requirements.txt und installieren Sie die Abhängigkeiten
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Kopieren Sie das Python-Skript in das Arbeitsverzeichnis
+COPY alarm.py .
+
+# Exponieren Sie den MQTT-Port (optional, falls der Container auch als Subscriber verwendet wird)
+EXPOSE 1883
+
+# Standardkommando beim Starten des Containers
+CMD ["python", "alarm.py"]
