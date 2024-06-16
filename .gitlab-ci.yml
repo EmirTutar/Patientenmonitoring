@@ -71,5 +71,5 @@ compile_final_presentation:
     when: on_success
     name: "Presentation.pdf"
     paths:
-      - doc/presentation/Zwischenpraesentation2/build/Presentation.pdf
+      - doc/presentation/Endpräsentation/build/Presentation.pdf
 
