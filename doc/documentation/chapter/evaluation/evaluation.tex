@@ -1,11 +1,43 @@
 \section{Evaluation}
 
 \subsection{Yolov5}
-Das Modell soll dem Model-Entwickler zufolge eine Genauigkeit von 85 bis 90\% bei Tageslicht haben. Es hat jedoch Schwierigkeiten mit der Detektion von vielen Personen auf einem Bild, was zu falschen Erkennungen führen kann. Für diesen Anwendungsfall, d.h. die Überwachung von Patienten, ist dies jedoch kein Problem, da es in den Bildern normalerweise nur einzelne Patienten gibt \cite{kumar_uttej2001image-based-human-fall-detection_2024}. 
+Das Modell zeigt laut dem Entwickler eine Genauigkeit von 85 bis 90\% bei Tageslicht. Es hat jedoch Schwierigkeiten, viele Personen auf einem Bild zu erkennen, was zu falschen Erkennungen führen kann. Für diesen Anwendungsfall, d.h. die Überwachung von Patienten, ist dies jedoch kein Problem, da in den Bildern normalerweise nur einzelne Patienten vorhanden sind \cite{kumar_uttej2001image-based-human-fall-detection_2024}. 
 
 \subsection{Testumgebung}
-Das Modell wurde von uns in verschiedenen Sturzsituationen getestet. Wie in unserem Testvideo zu sehen ist \cite{yolovideo}, funktioniert das Modell weitgehend wie vom Autor beschrieben. Allerdings treten gelegentlich Fehlermeldungen auf, die im Video ebenfalls dokumentiert sind. Diese Fehler sind vermutlich auf die Verwendung des kleineren YOLOv5s-Modells zurückzuführen.
+Das Modell wird in verschiedenen Sturzsituationen getestet. Wie im Testvideo zu sehen ist \cite{yolovideo}, funktioniert das Modell weitgehend wie vom Autor beschrieben. Allerdings treten gelegentlich Fehlermeldungen auf, die im Video ebenfalls dokumentiert sind. Diese Fehler sind vermutlich auf die Verwendung des kleineren YOLOv5s-Modells zurückzuführen.
 
 \subsection{Testergebnisse}
+Das Modell überzeugt insgesamt mit seinen Klassifikationen. Es ermöglicht, mit 1-2 FPS auf einem Raspberry Pi 4 Inferenz durchzuführen. Dadurch werden die Kosten für einen teuren Server gespart und das Projekt kann dynamisch mit den Kameras skaliert werden.
 
-Insgesamt hat uns das Modell mit seinen Klassifikationen überzeugt. Es ermöglicht uns, mit 1-2 FPS auf einem Raspberry Pi 4 Inferenz durchzuführen. Dadurch sparen wir die Kosten für einen teuren Server und können das Projekt dynamisch mit den Kameras skalieren.
+\subsection{Hardware Evaluation}
+
+Die Evaluierung der Hardwarekomponenten, insbesondere des Alarmsystems, umfasst die Überprüfung der Funktionalität und Zuverlässigkeit der eingesetzten Geräte wie LEDs, Buzzer und Taster. Diese Komponenten sind entscheidend für die Benachrichtigung und Rückmeldung im Fall eines erkannten Sturzes.
+
+\subsubsection{LEDs und Buzzer}
+Das Alarmsystem verwendet LEDs, um verschiedene Zustände anzuzeigen:
+
+\begin{itemize}
+	\item \textbf{Grüne LED}: Zeigt an, dass alles in Ordnung ist.
+	\item \textbf{Gelbe LED}: Warnt, dass möglicherweise ein Sturz erkannt wurde.
+	\item \textbf{Rote LED}: Signalisiert, dass ein Sturz erkannt wurde.
+\end{itemize}
+
+Zusätzlich wird ein Buzzer verwendet, um akustische Warnungen zu geben, insbesondere wenn ein Sturz erkannt wird. 
+
+\subsubsection{Taster}
+Ein Taster wird verwendet, um den Alarm manuell zu quittieren und den Buzzer stummzuschalten. Dieser Mechanismus erlaubt es den Patienten oder Betreuern, schnell auf Fehlalarme zu reagieren und das System zurückzusetzen.
+
+\subsubsection{Test der Hardware-Komponenten}
+Die Hardware-Komponenten werden in einer kontrollierten Umgebung getestet, um sicherzustellen, dass sie zuverlässig funktionieren. Folgende Tests werden durchgeführt:
+
+\begin{itemize}
+	\item \textbf{LED-Test}: Überprüfung der korrekten Anzeige der Zustände durch die LEDs.
+	\item \textbf{Buzzer-Test}: Sicherstellung, dass der Buzzer bei Erkennung eines Sturzes ein akustisches Signal ausgibt.
+	\item \textbf{Taster-Test}: Überprüfung, ob der Taster den Buzzer zuverlässig stummschaltet und den Alarm quittiert.
+\end{itemize}
+
+\subsubsection{Ergebnisse der Hardware-Tests}
+Die Tests zeigen, dass die LEDs die verschiedenen Zustände korrekt anzeigen und der Buzzer zuverlässig ein akustisches Signal ausgibt. Der Taster funktioniert ebenfalls einwandfrei und kann den Alarm zuverlässig stummschalten. Diese Ergebnisse bestätigen die Eignung der eingesetzten Hardware für das Alarmsystem.
+
+\subsubsection{Zusammenfassung}
+Die eingesetzte Hardware für das Alarmsystem, bestehend aus LEDs, Buzzer und Taster, erweist sich als zuverlässig und funktional. Die durchgeführten Tests bestätigen die korrekte Funktionsweise der Komponenten, was zur Erhöhung der Zuverlässigkeit des gesamten Überwachungssystems beiträgt.
