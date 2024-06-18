@@ -93,6 +93,12 @@ services:
       dockerfile: Dockerfile
     env_file: ./matrix/client/.nio.env
 
+  mail_client:
+    build:
+      context: ./mail
+      dockerfile: Dockerfile
+    env_file: ./mail/.mail.env
+
 
     
   # mqtt5 eclipse-mosquitto
