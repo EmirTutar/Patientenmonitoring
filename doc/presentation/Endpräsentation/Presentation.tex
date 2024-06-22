@@ -274,6 +274,18 @@
 \end{frame}
 
 
+\subsection{Docker}
+\begin{frame}
+	\frametitle{Docker}
+	
+	\begin{enumerate}
+		\item Docker 
+		\item Docker Compose
+		\item Environment Variablen
+	\end{enumerate}
+\end{frame}
+
+
 \subsection{MQTT}
 \begin{frame}
 	\frametitle{MQTT}
@@ -307,25 +319,20 @@
 			\centering
 			\includegraphics[width=\textwidth]{Images/SGO_Webmail.png}
 		\end{minipage}
-		\caption{''SOGo Weboberfläche für Postfach''}
+		\caption{SOGo Weboberfläche für Postfach}
 	\end{figure}
 \end{frame}
 
-\subsection{YOLO}
 \begin{frame}
 	\frametitle{Aktueller Stand}
 	\framesubtitle{YOLO}
-	\begin{enumerate}
-		\item Pretrained Model für Anforderungen gefunden
+	
+		\begin{enumerate}
+		\item Pretrained Model
 		\item Container aufgesetzt
-		\item Inklusion in MQTT  fertig
+		\item Detektion über folgende Klassen:
 	\end{enumerate}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Aktueller Stand}
-	\framesubtitle{YOLO}
+	
 	\begin{figure}
 		\centering
 		\begin{minipage}[t]{0.3\textwidth}
@@ -352,38 +359,70 @@
 \end{frame}
 
 
-\subsection{Matrix}
-\begin{frame}
-	\frametitle{Aktueller Stand}
-	\framesubtitle{Matrix}
-	\begin{enumerate}
-		\item Matrix Server aufgesetzt
-		\item E-Mail Bridge eingebunden
-		\item Element als Client ausgewählt
-	\end{enumerate}
-\end{frame}
 
 \begin{frame}
-	\frametitle{Aktueller Stand}
-	\framesubtitle{Matrix}
+	\frametitle{Matrix}	
 	\begin{figure}
 		\centering
-		\begin{minipage}[t]{0.45\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{Images/Matrix_2.png}
-			\caption*{Matrix Server}
-		\end{minipage}
-		\hfill
-		\begin{minipage}[t]{0.45\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{Images/Matrix.png}
-			\caption*{Matrix Client}
-		\end{minipage}
-		\hfill
-		\caption{Matrix Setup}
-		\label{fig:Matrix}
+		\begin{tikzpicture}[scale=0.7]
+			\node[inner sep=0pt] (laptop1) at (-10,2)
+			{\includegraphics[width=0.15\textwidth]{Images/computer.png}};
+			\node[font=\scriptsize] at (-10,1.2) {\scriptsize Laptop 1};
+			
+			\draw[->] (-9.2,1.8)--(-6.5,0.5) node[pos=0.5, above,rotate=-28] {\scriptsize matrix.org};
+			
+			\node[inner sep=0pt] (laptop2) at (-10,0)
+			{\includegraphics[width=0.15\textwidth]{Images/computer.png}};
+			\node[font=\scriptsize] at (-10,-0.8) {\scriptsize Laptop 2};
+			
+			\draw[->] (-9,0)--(-6.5,0) node[pos=0.45, above] {\scriptsize matrix.org};
+			
+			\node[inner sep=0pt] (laptop3) at (-10,-2)
+			{\includegraphics[width=0.15\textwidth]{Images/computer.png}};
+			\node[font=\scriptsize] at (-10,-2.8) {\scriptsize Laptop 3};
+			
+			\draw[->] (-9.2,-1.8)--(-6.5,-0.5) node[pos=0.5, above,rotate=26] {\scriptsize matrix.org};
+			
+			\node[inner sep=0pt] (internet) at (-5,0)
+			{\includegraphics[width=0.10\textwidth]{Images/cloud.png}};
+			\node[font=\scriptsize] at (-5,-0.8) {\scriptsize Internet};
+			
+			\draw[->] (-4,0)--(-3,0);
+			
+			\node[inner sep=0pt] (reverseproxy) at (-2,0)
+			{\includegraphics[width=0.10\textwidth]{Images/switch.png}};
+			\node[font=\scriptsize] at (-2,-0.7) {\scriptsize reverse proxy};
+			
+			\draw[->] (-1,0.0)--(0,0);
+			
+			\node[inner sep=0pt] (matrixserver) at (1,0)
+			{\includegraphics[width=0.10\textwidth]{Images/switch.png}};
+			\node[font=\scriptsize] at (1,-0.6) {\scriptsize matrix server};
+			
+			\draw[<->] (2,0.0)--(3,0);
+			
+			\node[inner sep=0pt] (datenbank) at (4,0)
+			{\includegraphics[width=0.04\textwidth]{Images/datenbank.png}};
+			\node[font=\scriptsize] at (4,-0.6) {\scriptsize PostgresSQL};
+			
+		\end{tikzpicture}
+		\caption{Aufbau des Matrix Servers}
+		\label{fig:patient_reverse_proxy}
 	\end{figure}
 \end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Matrix Client}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{Images/Matrix.png}
+		\caption*{Matrix Room in Element}
+		\label{fig:Matrix_Client}
+	\end{figure}
+\end{frame}
+
 
 
 \section{Evauluation}
@@ -400,9 +439,9 @@
 \begin{frame}
 	\frametitle{Ausblick}
 	\begin{enumerate}
-		\item Zusammenführen der Systeme
-		\item Evaluation
-		\item Alarm Setup
+		\item Bett Detection
+		\item Bystander Anonymization
+		\item Andere YOLOv8-Modelle 
 	\end{enumerate}
 \end{frame}
 
