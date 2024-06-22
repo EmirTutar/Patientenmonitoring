@@ -96,33 +96,14 @@ Zur Erhöhung der Sicherheit auf dem Raspberry Pi wird UFW (Uncomplicated Firewa
 Die Konfiguration von UFW stellt sicher, dass nur autorisierte Verbindungen zu den notwendigen Diensten auf dem Raspberry Pi zugelassen werden, wodurch die Sicherheit des Systems erhöht wird.
 
 
-\subsection{Nutzung von Docker}
+\subsection{Einsatz von Docker}
 
-\subsubsection{Docker für Fall-Detection-Alarm}
+Für alle Komponenten des verteilten Systems kam Docker zum Einsatz. Diese Technologie wurde gewählt, weil Docker Anwendungen in Containern isoliert, die alle notwendigen Abhängigkeiten und Konfigurationen enthalten. Dadurch konnten die Komponenten auf  den verschiedenen Geräten problemlos betrieben und getestet werden \cite{Aerisdocker}.
 
-\textbf{Beschreibung der Zustände}\\
+\subsubsection{Docker Compose}
 
-Das System verwendet vier Zustände, die jeweils unterschiedliche Ereignisse darstellen:
+Zusätzlich wurde Docker Compose verwendet, um mehrere Container als Teil eines einzigen Anwendungsstapels zu verwalten. In einer YAML-Datei (docker-compose.yml) werden alle benötigten Services, Netzwerke und Volumes definiert. Dies ermöglicht es, alle für einen Service erforderlichen Container mit einem einzigen Befehl zu starten, anstatt jeden Container einzeln konfigurieren und starten zu müssen \cite{DockerCompose}.
 
-\begin{itemize}
-	\item \textbf{0: Everything okay} - Das System zeigt an, dass alles in Ordnung ist.
-	\item \textbf{1: Fall detected} - Das System zeigt an, dass ein Sturz erkannt wird.
-	\item \textbf{2: Fall maybe detected} - Das System zeigt an, dass möglicherweise ein Sturz erkannt wird.
-	\item \textbf{3: Exit} - Beendet das System und schaltet alle Anzeigen ab.
-\end{itemize}
+\subsubsection{Environment-Datei}
 
-\textbf{Erstellen der Dockerfiles}\\
-
-Für jedes Skript (\texttt{pub.py} und \texttt{alarm.py}) wird ein eigenes Dockerfile erstellt, das die notwendigen Abhängigkeiten installiert und die Arbeitsumgebung konfiguriert. \\
-
-\textbf{Anpassen der Docker-Compose-Datei}\\
-
-Die \texttt{docker-compose.yml}-Datei wird angepasst, um die Container ohne ein festes \texttt{CMD} zu starten, sodass eine interaktive Shell im Container geöffnet und die Skripte manuell ausgeführt werden können. \\
-
-\textbf{Manuelles Starten der Skripte}\\
-
-Nach dem Starten der Container können die Skripte manuell in einer interaktiven Shell ausgeführt werden. Dies ermöglicht eine flexible Verwaltung und Kontrolle des Alarm-Skriptes.
-
-\subsubsection{Weitere Docker setups}
-
-\subsubsection{Weitere Docker setups }
+Um sicherzustellen, dass keine vertraulichen Informationen fest im Code verankert werden, wird eine Environment-Datei (.env) verwendet. Diese Datei erleichtert die Verwaltung der Umgebungsvariablen, welche von Docker Compose eingelesen und in den Containern verfügbar gemacht werden \cite{DockerEnv}.
