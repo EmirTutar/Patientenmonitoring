@@ -49,12 +49,12 @@
 
 % The table of contents outputs the sections and subsections that appear in your presentation, specified with the standard \section and \subsection commands. You may either display all sections and subsections on one slide with \tableofcontents, or display each section at a time on subsequent slides with \tableofcontents[pausesections]. The latter is useful if you want to step through each section and mention what you will discuss.
 
-\begin{frame}
-	\frametitle{Presentation Overview} % Slide title, remove this command for no title
+%\begin{frame}
+	%\frametitle{Presentation Overview} % Slide title, remove this command for no title
 
-	\tableofcontents % Output the table of contents (all sections on one slide)
+	%\tableofcontents % Output the table of contents (all sections on one slide)
 	%\tableofcontents[pausesections] % Output the table of contents (break sections up across separate slides)
-\end{frame}
+%\end{frame}
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION BODY SLIDES
@@ -149,15 +149,15 @@
 	\frametitle{Lastenheft}
 	\framesubtitle{Muss - Anforderungen}
 	\begin{enumerate}
-		\item Docker
-		\item Ubuntu 22.04 (LTS)
-		\item Dynamisches DNS-Management (ddclient)
-		\item Fail2ban
-		\item MQTT / MQTT-Client
-		\item SMTP-Server / SMTP-Client
-		\item Raspberry und Raspberry Pi
-		\item Fall Detektion
-		\item Matrix
+		\item Docker \checkmark 
+		\item Ubuntu 22.04 (LTS) \checkmark  
+		\item Dynamisches DNS-Management (ddclient) \checkmark 
+		\item Fail2ban \checkmark 
+		\item MQTT / MQTT-Client \checkmark 
+		\item SMTP-Server / SMTP-Client \checkmark 
+		\item Raspberry und Raspberry Pi  \checkmark 
+		\item Fall Detektion \checkmark 
+		\item Matrix \checkmark 
 	\end{enumerate}
 \end{frame}
 
@@ -167,8 +167,8 @@
 	\framesubtitle{Soll - Anforderungen}
 	\begin{enumerate}
 		\item Bett Detektion
-		\item Alarm (Ton und Licht)
-		\item Firewall
+		\item Alarm (Ton und Licht) \checkmark 
+		\item Firewall \checkmark  
 	\end{enumerate}
 \end{frame}
 
@@ -179,7 +179,7 @@
 	\begin{enumerate}
 		\item MQTT Frontend
 		\item Gesprochene Information über Patient in Hilfesituation
-		\item Kameraview
+		\item Kameraview \checkmark 
 	\end{enumerate}
 \end{frame}
 
@@ -191,7 +191,7 @@
 	\frametitle{Setup}
 	\framesubtitle{Hardware}
 	\begin{enumerate}
-		\item 3 Raspberry Pi
+		\item 2  Raspberry Pi und 1 Atomic Pi
 		\item 1 Kamera ist da
 		\item Ubuntu 22.04 installiert
 	\end{enumerate}
@@ -239,29 +239,8 @@
 
 
 
-\subsection{Setup Software}
-\begin{frame}
-	\frametitle{Setup}
-	\framesubtitle{Software}
-
-	\begin{enumerate}
-		\item Docker und Docker Compose
-		\item UFW
-		\item DDClient (noch ohne Docker)
-	\end{enumerate}
-\end{frame}
 
 \subsection{Alarm}
-\begin{frame}
-	\frametitle{Aktueller Stand}
-	\framesubtitle{Alarm}
-	\begin{enumerate}
-	    \item Steckboard und Pins bereit
-		\item LEDs bereit
-		\item Lautsprecher/Pipser bereit
-		\item 3.Rasberry Pi (für Alarm) bereit
-	\end{enumerate}
-\end{frame}
 
 \begin{frame}
 	\frametitle{Aktueller Stand}
@@ -287,10 +266,18 @@
 	
 \end{frame}
 
+\subsection{Video}
+
+\begin{frame}
+	\frametitle{Video}
+	
+\end{frame}
+
+
 \subsection{MQTT}
 \begin{frame}
-	\frametitle{Aktueller Stand}
-	\framesubtitle{MQTT}
+	\frametitle{MQTT}
+
 	\begin{enumerate}
 		\item Konzept ausgearbeitet
 		\item Erste Implementation
@@ -390,7 +377,7 @@
 		\begin{minipage}[t]{0.45\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{Images/Matrix.png}
-			\caption*{E-Mail Bridge in Element}
+			\caption*{Matrix Client}
 		\end{minipage}
 		\hfill
 		\caption{Matrix Setup}
@@ -399,9 +386,9 @@
 \end{frame}
 
 
-\section{To-do}
+\section{Evauluation}
 \begin{frame}
-	\frametitle{To-do}
+	\frametitle{Evauluation}
 	\begin{enumerate}
 		\item Zusammenführen der Systeme
 		\item Evaluation
@@ -409,5 +396,14 @@
 	\end{enumerate}
 \end{frame}
 
+\section{Ausblick}
+\begin{frame}
+	\frametitle{Ausblick}
+	\begin{enumerate}
+		\item Zusammenführen der Systeme
+		\item Evaluation
+		\item Alarm Setup
+	\end{enumerate}
+\end{frame}
 
 \end{document}
