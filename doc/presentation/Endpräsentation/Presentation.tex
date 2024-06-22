@@ -64,83 +64,80 @@
 \begin{frame}{Systemaufbau}
 
 	\begin{figure}
-		\begin{tikzpicture}[scale=0.76]
-
-			\draw [-, dashed, gray] (4,1)-- (-4,1)--(-4,3.5) --(4,3.5) --(4,1);
-			\node at (-2.8 ,3) {BED VIEW};
-
+		\centering
+		\begin{tikzpicture}[scale=0.8]
+			
+			
+			\draw [-, dashed, gray] (4.5,1)-- (-4,1)--(-4,3.5) --(4.5,3.5) --(4.5,1);
+			
+			\node at (-2.8 ,3.2) {\scriptsize BED VIEW};
+			
 			\node[inner sep=0pt] (whitehead) at (2,2.5)
 			{\includegraphics[width=.05\textwidth]{Images/camera.png}};
-
-			\node[above] at (2.2,2.6) {\scriptsize Raspberry Pi};
-
+			
+			\node[above] at (2.2,2.6) {\scriptsize Raspberry Pi und Kamera};
+			
 			\node[inner sep=0pt] (whitehead) at (0,2)
 			{\includegraphics[width=.1\textwidth]{Images/person_in_bed.png}};
-
-			\node at (-2.5 ,-1) {ROOM VIEW};
-
-			\draw [-, dashed, gray] (4,-0.5)-- (-4,-0.5)--(-4,-4) --(4, -4 ) --(4,-0.5);
-
+			
+			\node at (-2.6 ,-1) { \scriptsize ROOM VIEW};
+			
+			\draw [-, dashed, gray] (4.5,-0.6)-- (-4,-0.6)--(-4,-4) --(4.5, -4 ) --(4.5,-0.5);
+			
 			\node[inner sep=0pt] (whitehead) at (2,-1.5)
 			{\includegraphics[width=.05\textwidth]{Images/camera.png}};
-
-
-
+			
+			
+			
 			\node[inner sep=0pt] (whitehead) at (-0.25,-1.25)
 			{\includegraphics[width=.1\textwidth]{Images/person_in_bed.png}};
-
-
+			
+			
 			\node[inner sep=0pt] (whitehead) at (0,-2.25)
 			{\includegraphics[width=.1\textwidth]{Images/person_in_bed.png}};
-
+			
 			\node[inner sep=0pt] (whitehead) at (-0.5,-3.25)
 			{\includegraphics[width=.1\textwidth]{Images/person_in_bed.png}};
-
-
+			
+			
 			\node[inner sep=0pt] (whitehead) at (4.0,0.25)
-			{\includegraphics[width=.06\textwidth]{Images/server.png}};
-
-			\node[below] at (2.2,-1.6) {\scriptsize Raspberry Pi};
-
-			\node[below] at (4.0,0) {\scriptsize Broker};
-
-
-
+			{\includegraphics[width=.08\textwidth]{Images/server.png}};
+			
+			\node[below] at (2.2,-1.6) {\scriptsize Raspberry Pi und Kamera};
+			
+			\node[below] at (4.0,-0.1) {\scriptsize  Broker};
+			
+			
+			
 			\draw [-] (2,2.5)-- ( 3,2.5) -- (3,0.25) ;
 			\draw [-] (2,-1.5)-- ( 3,-1.5) -- (3,0.25) ;
 			\draw [-]  (3,0.25)  -- (3.8,0.25);
-
+			
 			\draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,-1.5) -- (5.5,-1.5);
 			\draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,2.5) -- (5.5,2.5);
-
+			
 			\node at  (7.0,2.5) {\scriptsize Bed Detection};
-
-
+			
+			
 			\node at  (7.0,-1.5) {\scriptsize Fall Detection};
-
-
-
+			
+			
+			
 			\draw [->]  (8.5 ,-1.5) -- (9.0,-1.5) -- (9,0.25) -- (9.5,0.25)  ;
-
+			
 			\draw [->]  (8.5, 2.5) -- (9.0,2.5) -- (9,0.25) -- (9.5,0.25) ;
-
-			\node[inner sep=0pt] (whitehead) at (9.85,0.25)
+			
+			\node[inner sep=0pt] (whitehead) at (10.2,0.25)
 			{\includegraphics[width=.05\textwidth]{Images/raspi.png}};
-
-			\node[below] at (9.8,-0.1) {\scriptsize Pi };
-
-			\draw [->]  (10.3,0.25) -- (10.6,0.25) ;
-
-			\node[red] at  (11.4,0.25) {Alarm};
-
-
+			
+			\node[below] at (10.2,0.0) {\scriptsize Raspberry Pi };
+			
+			
+			
 		\end{tikzpicture}
 		\caption{Darstellung des Systemaufbaus}
 		\label{fig:patient_monitoring}
-
 	\end{figure}
-
-
 \end{frame}
 
 \section{Lastenheft}

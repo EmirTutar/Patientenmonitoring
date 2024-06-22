@@ -26,13 +26,13 @@ Für das Projekt wird der \nameref{subsec:pi} gewählt, da dieser eine einfache 
 
 
 \begin{figure}[H]
-	\hspace{-0.5cm}
-	\begin{tikzpicture}
+	\centering
+	\begin{tikzpicture}[scale=0.8]
 		
 	
-		\draw [-, dashed, gray] (4,1)-- (-4,1)--(-4,3.5) --(4,3.5) --(4,1);
+		\draw [-, dashed, gray] (4.5,1)-- (-4,1)--(-4,3.5) --(4.5,3.5) --(4.5,1);
 		
-			\node at (-2.8 ,3) {BED VIEW};
+			\node at (-2.8 ,3.2) {\scriptsize BED VIEW};
 					
 		\node[inner sep=0pt] (whitehead) at (2,2.5)
 		{\includegraphics[width=.05\textwidth]{images/camera.png}};
@@ -42,9 +42,9 @@ Für das Projekt wird der \nameref{subsec:pi} gewählt, da dieser eine einfache 
 		\node[inner sep=0pt] (whitehead) at (0,2)
 		{\includegraphics[width=.1\textwidth]{images/person_in_bed.png}};
 
-			\node at (-2.6 ,-1) {ROOM VIEW};
+			\node at (-2.6 ,-1) { \scriptsize ROOM VIEW};
 	
-			\draw [-, dashed, gray] (4,-0.5)-- (-4,-0.5)--(-4,-4) --(4, -4 ) --(4,-0.5);
+			\draw [-, dashed, gray] (4.5,-0.6)-- (-4,-0.6)--(-4,-4) --(4.5, -4 ) --(4.5,-0.5);
 		
 		\node[inner sep=0pt] (whitehead) at (2,-1.5)
 		{\includegraphics[width=.05\textwidth]{images/camera.png}};
@@ -67,7 +67,7 @@ Für das Projekt wird der \nameref{subsec:pi} gewählt, da dieser eine einfache 
 		
 				\node[below] at (2.2,-1.6) {\scriptsize Raspberry Pi und Kamera};
 		
-		\node[below] at (4.0,-0.1) {\scriptsize MQTT Broker};
+		\node[below] at (4.0,-0.1) {\scriptsize  Broker};
 		
 			
 		
@@ -78,10 +78,10 @@ Für das Projekt wird der \nameref{subsec:pi} gewählt, da dieser eine einfache 
 	    \draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,-1.5) -- (5.5,-1.5);
 	     \draw [->]  (4.2 ,0.25) -- (5.0,0.25) -- (5.0,2.5) -- (5.5,2.5);
 	
-		\node at  (7.0,2.5) {Bed Detection};
+		\node at  (7.0,2.5) {\scriptsize Bed Detection};
 		
 		
-		\node at  (7.0,-1.5) {Fall Detection};
+		\node at  (7.0,-1.5) {\scriptsize Fall Detection};
 		
 		
 	
@@ -89,14 +89,11 @@ Für das Projekt wird der \nameref{subsec:pi} gewählt, da dieser eine einfache 
 	
 		\draw [->]  (8.5, 2.5) -- (9.0,2.5) -- (9,0.25) -- (9.5,0.25) ;
 		
-		\node[inner sep=0pt] (whitehead) at (9.85,0.25)
+		\node[inner sep=0pt] (whitehead) at (10.2,0.25)
 		{\includegraphics[width=.05\textwidth]{images/raspi.png}};
 		
-		\node[below] at (10.,0.1) {\scriptsize Raspberry Pi };
+		\node[below] at (10.2,0.0) {\scriptsize Raspberry Pi };
 		
-		\draw [->]  (10.3,0.25) -- (10.6,0.25) ;
-		
-		\node[red] at  (11.2,0.25) {Alarm};
 		
 		
 	\end{tikzpicture}
