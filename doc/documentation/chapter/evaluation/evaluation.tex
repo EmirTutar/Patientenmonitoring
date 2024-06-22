@@ -1,12 +1,13 @@
+\selectlanguage{german}
 \section{Evaluation}
 
 \subsection{Yolov5}
 Das Modell zeigt laut dem Entwickler eine Genauigkeit von 85 bis 90\% bei Tageslicht. Es hat jedoch Schwierigkeiten, viele Personen auf einem Bild zu erkennen, was zu falschen Erkennungen führen kann. Für diesen Anwendungsfall, d.h. die Überwachung von Patienten, ist dies jedoch kein Problem, da in den Bildern normalerweise nur einzelne Patienten vorhanden sind \cite{kumar_uttej2001image-based-human-fall-detection_2024}. 
 
-\subsection{Testumgebung}
+\subsubsection{Testumgebung}
 Das Modell wird in verschiedenen Sturzsituationen getestet. Wie im Testvideo zu sehen ist \cite{yolovideo}, funktioniert das Modell weitgehend wie vom Autor beschrieben. Allerdings treten gelegentlich Fehlermeldungen auf, die im Video ebenfalls dokumentiert sind. Diese Fehler sind vermutlich auf die Verwendung des kleineren YOLOv5s-Modells zurückzuführen.
 
-\subsection{Testergebnisse}
+\subsubsection{Testergebnisse}
 Das Modell überzeugt insgesamt mit seinen Klassifikationen. Es ermöglicht, mit 1-2 FPS auf einem Raspberry Pi 4 Inferenz durchzuführen. Dadurch werden die Kosten für einen teuren Server gespart und das Projekt kann dynamisch mit den Kameras skaliert werden.
 
 \subsection{Hardware Evaluation}
@@ -41,3 +42,28 @@ Die Tests zeigen, dass die LEDs die verschiedenen Zustände korrekt anzeigen und
 
 \subsubsection{Zusammenfassung}
 Die eingesetzte Hardware für das Alarmsystem, bestehend aus LEDs, Buzzer und Taster, erweist sich als zuverlässig und funktional. Die durchgeführten Tests bestätigen die korrekte Funktionsweise der Komponenten, was zur Erhöhung der Zuverlässigkeit des gesamten Überwachungssystems beiträgt.
+
+\subsection{MQTT - Evaluation}
+
+\subsubsection{Effizienz und Herausforderungen}
+MQTT bietet eine effiziente Lösung für die Kommunikation zwischen Geräten mit begrenzten Ressourcen. Im Betrieb zeigen sich jedoch einige Herausforderungen. Insbesondere das Versenden von Bildern einer Kamera über MQTT führt zu Verzögerungen. Diese Verzögerungen beeinträchtigen die Echtzeit-Kommunikation erheblich.
+
+\subsubsection{Zuverlässigkeitsprobleme}
+Zusätzlich bleibt der MQTT-Broker nicht immer zuverlässig am Laufen. Es treten gelegentlich Ausfälle auf, bei denen der Broker nicht erreichbar ist, obwohl Server, DNS und Firewall ordnungsgemäß funktionieren. Diese Unzuverlässigkeit stellt ein erhebliches Problem dar und mindert die Gesamtperformance des Systems. Die Ursachen dieser Ausfälle müssen weiter untersucht werden, um eine stabile und zuverlässige Kommunikation sicherzustellen.
+
+\subsubsection{Vorteile und Fazit}
+Abgesehen von den genannten Problemen funktioniert die Kommunikation über MQTT gut und ist einfach zu implementieren. Das Publisher/Subscriber-Modell ermöglicht eine flexible und effiziente Nachrichtenübermittlung. Die leichte Konfiguration und der weitverbreitete Einsatz von MQTT-Clients in verschiedenen Programmiersprachen erleichtern die Integration in bestehende Systeme erheblich. Trotz der technischen Schwierigkeiten bietet MQTT somit eine solide Grundlage für die Kommunikation in dem System.
+
+\subsection{Mailcow - Evaluation}
+
+\subsubsection{Einfachheit der Einrichtung}
+Die Einrichtung von Mailcow gestaltet sich besonders einfach, da Mailcow-Dockerized vorgefertigte Container bereitstellt, die nur noch konfiguriert werden müssen. Das spart erheblich Zeit und reduziert mögliche Fehlerquellen, die bei einer manuellen Installation auftreten könnten.
+
+\subsubsection{Hervorragende Dokumentation}
+Die Dokumentation von Mailcow erweist sich als sehr gut und enthält detaillierte Anweisungen, einschließlich des DNS-Setups. Diese klaren und verständlichen Schritt-für-Schritt-Anleitungen erleichtern die Konfiguration erheblich und stellen sicher, dass alle notwendigen Schritte korrekt ausgeführt werden.
+
+\subsubsection{Vorteile der integrierten Web-Oberfläche}
+Ein wesentlicher Vorteil von Mailcow gegenüber einer reinen Postfix/Dovecot-Installation ist die integrierte Web-Oberfläche. Diese Web-UI erleichtert die Verwaltung und Konfiguration des E-Mail-Servers erheblich, indem sie eine benutzerfreundliche und intuitive Oberfläche bietet. Im Gegensatz zu einer alleinigen Postfix/Dovecot-Installation, bei der viele Einstellungen manuell über Konfigurationsdateien vorgenommen werden müssen, ermöglicht Mailcow eine effiziente Verwaltung über das Web-Interface.
+
+\subsubsection{Log- und Monitoring-Tools}
+Zusätzlich bietet die Web-Oberfläche von Mailcow integrierte Log- und Monitoring-Tools. Diese Tools ermöglichen eine umfassende Überwachung und Analyse der Serveraktivitäten, was die Fehlersuche und -behebung vereinfacht und die allgemeine Sicherheit und Stabilität des Systems erhöht. Durch die zentrale Verwaltung und das Monitoring über die Web-UI werden administrative Aufgaben deutlich effizienter und übersichtlicher.
