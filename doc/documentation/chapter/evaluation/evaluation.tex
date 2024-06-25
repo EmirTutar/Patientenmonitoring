@@ -1,5 +1,10 @@
 \selectlanguage{german}
+\clearpage
 \section{Evaluation}
+
+\subsection{Hardware Evaluation}
+
+Die Hardware des Patient Monitoring Systems wird hinsichtlich ihrer Benutzerfreundlichkeit, Zuverlässigkeit und Effizienz bewertet. Der Einsatz von kostengünstigen und leicht verfügbaren Komponenten wie dem Raspberry Pi gewährleistet eine einfache Installation und Wartung. Die LEDs und der Buzzer bieten klare und unmittelbare visuelle und akustische Rückmeldungen, die für eine effektive Überwachung notwendig sind. Die durchgeführten Tests bestätigen die hohe Zuverlässigkeit der Hardwarekomponenten, die unter verschiedenen Bedingungen stabil und zuverlässig funktionieren. Dadurch wird sichergestellt, dass das System in der Praxis gut einsetzbar ist und die Anforderungen der kontinuierlichen Patientenüberwachung erfüllt.
 
 \subsection{Yolov5}
 Das Modell zeigt laut dem Entwickler eine Genauigkeit von 85 bis 90\% bei Tageslicht. Es hat jedoch Schwierigkeiten, viele Personen auf einem Bild zu erkennen, was zu falschen Erkennungen führen kann. Für diesen Anwendungsfall, d.h. die Überwachung von Patienten, ist dies jedoch kein Problem, da in den Bildern normalerweise nur einzelne Patienten vorhanden sind \cite{kumar_uttej2001image-based-human-fall-detection_2024}. 
@@ -9,39 +14,6 @@ Das Modell wird in verschiedenen Sturzsituationen getestet. Wie im Testvideo zu 
 
 \subsubsection{Testergebnisse}
 Das Modell überzeugt insgesamt mit seinen Klassifikationen. Es ermöglicht, mit 1-2 FPS auf einem Raspberry Pi 4 Inferenz durchzuführen. Dadurch werden die Kosten für einen teuren Server gespart und das Projekt kann dynamisch mit den Kameras skaliert werden.
-
-\subsection{Hardware Evaluation}
-
-Die Evaluierung der Hardwarekomponenten, insbesondere des Alarmsystems, umfasst die Überprüfung der Funktionalität und Zuverlässigkeit der eingesetzten Geräte wie LEDs, Buzzer und Taster. Diese Komponenten sind entscheidend für die Benachrichtigung und Rückmeldung im Fall eines erkannten Sturzes.
-
-\subsubsection{LEDs und Buzzer}
-Das Alarmsystem verwendet LEDs, um verschiedene Zustände anzuzeigen:
-
-\begin{itemize}
-	\item \textbf{Grüne LED}: Zeigt an, dass alles in Ordnung ist.
-	\item \textbf{Gelbe LED}: Warnt, dass möglicherweise ein Sturz erkannt wurde.
-	\item \textbf{Rote LED}: Signalisiert, dass ein Sturz erkannt wurde.
-\end{itemize}
-
-Zusätzlich wird ein Buzzer verwendet, um akustische Warnungen zu geben, insbesondere wenn ein Sturz erkannt wird. 
-
-\subsubsection{Taster}
-Ein Taster wird verwendet, um den Alarm manuell zu quittieren und den Buzzer stummzuschalten. Dieser Mechanismus erlaubt es den Patienten oder Betreuern, schnell auf Fehlalarme zu reagieren und das System zurückzusetzen.
-
-\subsubsection{Test der Hardware-Komponenten}
-Die Hardware-Komponenten werden in einer kontrollierten Umgebung getestet, um sicherzustellen, dass sie zuverlässig funktionieren. Folgende Tests werden durchgeführt:
-
-\begin{itemize}
-	\item \textbf{LED-Test}: Überprüfung der korrekten Anzeige der Zustände durch die LEDs.
-	\item \textbf{Buzzer-Test}: Sicherstellung, dass der Buzzer bei Erkennung eines Sturzes ein akustisches Signal ausgibt.
-	\item \textbf{Taster-Test}: Überprüfung, ob der Taster den Buzzer zuverlässig stummschaltet und den Alarm quittiert.
-\end{itemize}
-
-\subsubsection{Ergebnisse der Hardware-Tests}
-Die Tests zeigen, dass die LEDs die verschiedenen Zustände korrekt anzeigen und der Buzzer zuverlässig ein akustisches Signal ausgibt. Der Taster funktioniert ebenfalls einwandfrei und kann den Alarm zuverlässig stummschalten. Diese Ergebnisse bestätigen die Eignung der eingesetzten Hardware für das Alarmsystem.
-
-\subsubsection{Zusammenfassung}
-Die eingesetzte Hardware für das Alarmsystem, bestehend aus LEDs, Buzzer und Taster, erweist sich als zuverlässig und funktional. Die durchgeführten Tests bestätigen die korrekte Funktionsweise der Komponenten, was zur Erhöhung der Zuverlässigkeit des gesamten Überwachungssystems beiträgt.
 
 \subsection{MQTT - Evaluation}
 
@@ -60,10 +32,22 @@ Abgesehen von den genannten Problemen funktioniert die Kommunikation über MQTT 
 Die Einrichtung von Mailcow gestaltet sich besonders einfach, da Mailcow-Dockerized vorgefertigte Container bereitstellt, die nur noch konfiguriert werden müssen. Das spart erheblich Zeit und reduziert mögliche Fehlerquellen, die bei einer manuellen Installation auftreten könnten.
 
 \subsubsection{Hervorragende Dokumentation}
-Die Dokumentation von Mailcow erweist sich als sehr gut und enthält detaillierte Anweisungen, einschließlich des DNS-Setups. Diese klaren und verständlichen Schritt-für-Schritt-Anleitungen erleichtern die Konfiguration erheblich und stellen sicher, dass alle notwendigen Schritte korrekt ausgeführt werden.
+Die Dokumentation von Mailcow erweist sich als sehr gut und enthält detaillierte Anweisungen, einschließlich des DNS-Setups. Diese klaren und ver-ständlichen Schritt-für-Schritt-Anleitungen erleichtern die Konfiguration erheblich und stellen sicher, dass alle notwendigen Schritte korrekt ausgeführt werden.
 
 \subsubsection{Vorteile der integrierten Web-Oberfläche}
 Ein wesentlicher Vorteil von Mailcow gegenüber einer reinen Postfix/Dovecot-Installation ist die integrierte Web-Oberfläche. Diese Web-UI erleichtert die Verwaltung und Konfiguration des E-Mail-Servers erheblich, indem sie eine benutzerfreundliche und intuitive Oberfläche bietet. Im Gegensatz zu einer alleinigen Postfix/Dovecot-Installation, bei der viele Einstellungen manuell über Konfigurationsdateien vorgenommen werden müssen, ermöglicht Mailcow eine effiziente Verwaltung über das Web-Interface.
 
 \subsubsection{Log- und Monitoring-Tools}
-Zusätzlich bietet die Web-Oberfläche von Mailcow integrierte Log- und Monitoring-Tools. Diese Tools ermöglichen eine umfassende Überwachung und Analyse der Serveraktivitäten, was die Fehlersuche und -behebung vereinfacht und die allgemeine Sicherheit und Stabilität des Systems erhöht. Durch die zentrale Verwaltung und das Monitoring über die Web-UI werden administrative Aufgaben deutlich effizienter und übersichtlicher.
+Zusätzlich bietet die Web-Oberfläche von Mailcow integrierte Log- und Moni-toring-Tools. Diese Tools ermöglichen eine umfassende Überwachung und Analyse der Serveraktivitäten, was die Fehlersuche und -behebung vereinfacht und die allgemeine Sicherheit und Stabilität des Systems erhöht. Durch die zentrale Verwaltung und das Monitoring über die Web-UI werden administrative Aufgaben deutlich effizienter und übersichtlicher.
+
+\subsection{Benutzerfreundlichkeit}
+
+Das System zeigt eine hohe Benutzerfreundlichkeit, da es einfach zu bedienen ist und durch eine intuitive Benutzeroberfläche unterstützt wird. Die Installation und Konfiguration sind klar dokumentiert und auch für Nutzer ohne tiefgehende technische Kenntnisse leicht nachvollziehbar. Pflegekräfte können das System schnell erlernen und effizient nutzen, was die Überwachung der Patienten erheblich erleichtert. Besonders die Echtzeit-Benachrichtigungen und die visuelle Alarmierung durch LEDs und akustische Signale tragen zur schnellen Reaktion in Notfallsituationen bei.
+
+\subsection{Preis}
+
+Das Patient Monitoring System ist kosteneffizient konzipiert. Durch den Einsatz von kostengünstigen Komponenten wie dem Raspberry Pi und frei verfügbarer Open-Source-Software bleiben die Gesamtkosten überschaubar. Im Vergleich zu kommerziellen Lösungen bietet das System eine vergleichbare Funktionalität zu einem Bruchteil der Kosten. Dies macht es besonders attraktiv für kleinere medizinische Einrichtungen oder Pflegeheime mit begrenztem Budget.
+
+\subsection{Einfachheit des Systems}
+
+Die Einfachheit des Systems wird durch den modularen Aufbau und die Nutzung bewährter Technologien wie Docker, MQTT und UFW unterstrichen. Die Systemarchitektur ist so gestaltet, dass Erweiterungen und Anpassungen problemlos vorgenommen werden können. Auch die Wartung des Systems erfordert nur minimalen Aufwand, da die meisten Komponenten automatisch aktualisiert werden können. Die klare Struktur und die ausführliche Dokumentation erleichtern zudem die Fehlersuche und -behebung, was die Zuverlässigkeit und Stabilität des Systems weiter erhöht.
