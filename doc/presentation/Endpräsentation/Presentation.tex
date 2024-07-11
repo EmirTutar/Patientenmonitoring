@@ -281,9 +281,9 @@
 \begin{frame}
 	\frametitle{Docker}
 	\begin{enumerate}
-		\item Docker 
-		\item Docker Compose
-		\item Environment Variablen
+		\item Grundlage für unser System, alle Komponenten sind containerisiert
+		\item Secrets und Konfiguration über Environment Variables und Volumes
+		\item Docker Compose für einfaches Management
 	\end{enumerate}
 \end{frame}
 
@@ -291,12 +291,10 @@
 \section{MQTT}
 \begin{frame}
 	\frametitle{MQTT}
-
 	\begin{enumerate}
-		\item Konzept ausgearbeitet
-		\item Erste Implementation
-		\item Erfolgreich auf AtomicPi deployt
-		\item Test Publisher \& Subscriber haben funktioniert
+    \item Deployment von Eclipse - Mosquitto Message Broker 
+    \item Kommunikation mit Broker nur über Authentifikation möglich
+    \item File-Permission - Probleme für Passwort-Datei 
 	\end{enumerate}
 \end{frame}
 
@@ -305,11 +303,12 @@
 	\frametitle{Mailcow}
 	\framesubtitle{SMTP-Server / SMTP-Client}
 	\begin{enumerate}
-		\item DNS - Setup erledigt
-		\item Mailcow deployt
-		\item SOGo Weboberfläche deployt
-		\item Erfolgreich Testmails an eigenes Postfach geschickt
-		\item Herausforderung: Disk Space
+		\item DNS - eingerichtet, aber Mails an andere Mailserver nicht möglich, Telekom setzt alle Kunden auf eine Spammliste
+    \item fertige Mailcow - Container mithilfe von Docker deployt
+    \item Konfiguration über Admin-WebUI
+    \item Geführte Konfiguration von Sicherheitsmaßnahmen wie DKIM
+    \item Monitoring - Tools für Logs, Speicher und CPU
+    \item Deployt auf AtomicPi, da ca. 20 Container
 	\end{enumerate}
 \end{frame}
 
@@ -323,6 +322,16 @@
 		\end{minipage}
 		\caption{SOGo Weboberfläche für Postfach}
 	\end{figure}
+\end{frame}
+
+\section{SMTP-Server / SMTP-Client}
+\begin{frame}
+	\frametitle{SMTP-Client}
+	\framesubtitle{SMTP-Server / SMTP-Client}
+	\begin{enumerate}
+    \item SMTP-Client mit ''emails'' Modul in Python
+    \item Hört auf MQTT - Broker und sendet E-Mails
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}
