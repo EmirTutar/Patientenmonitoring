@@ -1,4 +1,4 @@
-\documentclass[]{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usepackage{graphicx} 
 \graphicspath{{Images/}{./}}
 \usepackage{booktabs}
@@ -6,6 +6,8 @@
 \usepackage{pgfplots}
 \usepackage{float}
 \usepackage{listings,xcolor}
+\usepackage{media9}
+
 
 \usetheme{Madrid}
 \usecolortheme{beaver}
@@ -271,11 +273,19 @@
 
 \begin{frame}
 	\frametitle{Video}
-	\begin{enumerate}
-		\item Video-Demonstration
-	\end{enumerate}
+	\begin{center}
+		\includemedia[
+		width=1.0\linewidth,
+		height=0.5\linewidth,
+		activate=pageopen,
+		addresource=Alarm.mp4,
+		flashvars={
+			source=Alarm.mp4
+		},
+		passcontext
+		]{}{VPlayer.swf}
+	\end{center}
 \end{frame}
-
 
 \section{Docker}
 \begin{frame}

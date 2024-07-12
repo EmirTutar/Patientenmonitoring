@@ -38,11 +38,11 @@ The system requires the following containers to fully function:
 - Matrix-Bridge
 
 ## Authors
-| Name | Email |
-| ------ | ------ |
-| Emircan Tutar    | emircan.tutar@hs-weingarten.de    |
-| Niklas Kleiser   | niklas.kleiser@hs-weingarten.de   |
-| David Metzler    | david.metzler@hs-weingarten.de    |
+| Name | Email | Matrikelnummer |
+| ------ | ------ | --- |
+| Emircan Tutar    | emircan.tutar@hs-weingarten.de    | 35606 |
+| Niklas Kleiser   | niklas.kleiser@hs-weingarten.de   | 35579 |
+| David Metzler    | david.metzler@hs-weingarten.de    | 35582 |
 
 
 ## License
